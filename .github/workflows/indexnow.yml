@@ -1,0 +1,38 @@
+name: Notify IndexNow on content updates
+on:
+  push:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "es/**/*.html"
+      - "guides/**/*.html"
+      - "sitemap.xml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check key file and notify IndexNow once
+        shell: bash
+        run: |
+          set -euo pipefail
+          KEY="c50ed6e272f44a9686a7bd1e735b910d"
+          HOST="https://toolpilot-guide.onrender.com"
+          echo "Waiting briefly for the static-site publish to propagate"
+          sleep 60
+          KEY_RESPONSE=$(curl --location --silent --show-error --max-time 25 "$HOST/$KEY.txt" || true)
+          if [ "$KEY_RESPONSE" != "$KEY" ]; then
+            echo "Key verification file unavailable; do not claim indexing" >&2
+            exit 1
+          fi
+          RESPONSE=$(curl --silent --show-error --max-time 30 -w '%{http_code}' -o /tmp/indexnow.response \
+            -X POST 'https://api.indexnow.org/indexnow' \
+            -H 'Content-Type: application/json; charset=utf-8' \
+            --data-binary "{\"host\":\"toolpilot-guide.onrender.com\",\"key\":\"$KEY\",\"urlList\":[\"$HOST/\",\"$HOST/es/\",\"$HOST/guides/beehiiv-newsletter.html\",\"$HOST/es/guias/beehiiv-newsletter.html\",\"$HOST/guides/newsletter-platform-costs.html\",\"$HOST/es/guias/costes-plataforma-newsletter.html\",\"$HOST/es/herramientas/calculadora-newsletter.html\"]}")
+          echo "IndexNow HTTP status: $RESPONSE"
+          case "$RESPONSE" in
+            200|202) echo "Submission received for processing; indexing is NOT guaranteed";;
+            *) cat /tmp/indexnow.response; exit 1;;
+          esac
