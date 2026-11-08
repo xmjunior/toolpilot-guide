@@ -48,3 +48,15 @@ The sitemap and IndexNow submission aid discovery, not guaranteed indexing. Sear
 - Live browser checks confirmed recalculation, zero-rate handling, scenario-link restoration and the standalone embed.
 - Optional analytics was declined during browser QA to avoid deliberate test visits entering the audience baseline.
 - The first IndexNow run happened before the new deploy and submitted the previous eight URLs. The workflow now waits for the current sitemap before submitting, avoiding that race.
+
+## Follow-up distribution and maintenance — November 8, 22:35 UTC
+
+- PublicTools: submitted the Spanish calculator through https://publictools.live/submit. The form confirmed “Submission received!” and editorial review. Pending, not a public listing.
+- ManyTools: submitted the calculator through https://manytools.com/submit-tool/ under Data Tools. The form confirmed “Toolpilot Guide is on our list to check.” Pending, not a public listing.
+- NoSignupTools: form completed with icon under Business, but no receipt or publication could be confirmed after submission. Resolve status before any further submission.
+- DevElif: no publication. Its validator rejected both English descriptions with “Website name and description must be in English.” Stop retrying this form until that issue is resolved.
+- Toolhype and Hypertools were not used because their focus is AI tools and the calculator does not use AI.
+- Ahrefs connector returned “Insufficient plan”; no upgrade or paid requests made.
+- Gmail check found no replies or bounce notices matching the earlier ToolPilot pitches. Metricool still returned zero recorded views, visits and visitors; consent limits still apply.
+- Corrected the English and Spanish home FAQ to describe existing optional Metricool analytics accurately. No consent or tracking behavior changed.
+- Added a lightweight SVG favicon using the existing black/gold branding; linked it on 22 HTML pages. HTML links and SVG XML validation passed.
