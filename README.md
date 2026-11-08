@@ -25,3 +25,12 @@ The website currently includes a disclosed referral link to the beehiiv partner 
 Improve the calculator, provide more original buying guides, add privacy-respecting aggregate analytics with proper consent/compliance, and acquire genuinely interested visitors via authorized communities and search. We welcome actionable product feedback.
 
 © 2026 ToolPilot Guide.
+
+## Free newsletter planning resources
+
+- [English resource hub](https://toolpilot-guide.onrender.com/newsletter-resources.html)
+- [Recursos en español](https://toolpilot-guide.onrender.com/es/recursos-newsletter.html)
+- [Platform cost calculator](https://toolpilot-guide.onrender.com/tools/newsletter-platform-cost-calculator.html)
+- [Embeddable calculator](https://toolpilot-guide.onrender.com/embed/newsletter.html) — no third-party analytics in the embed.
+
+The calculators share dependency-free maths. Run `node --test tests/calculators.test.cjs` to verify break-even and fee comparison scenarios. Platform comparisons exclude payment processing and taxes, and distinguish monthly billing from annual equivalents.

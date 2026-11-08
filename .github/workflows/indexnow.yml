@@ -6,6 +6,8 @@ on:
       - "index.html"
       - "es/**/*.html"
       - "guides/**/*.html"
+      - "tools/**/*.html"
+      - "newsletter-resources.html"
       - "sitemap.xml"
   workflow_dispatch:
 permissions:
@@ -27,10 +29,20 @@ jobs:
             echo "Key verification file unavailable; do not claim indexing" >&2
             exit 1
           fi
+          curl --fail --location --silent --show-error --max-time 25 "$HOST/sitemap.xml" -o /tmp/toolpilot-sitemap.xml
+          python3 - <<'PYTHON'
+          import json, xml.etree.ElementTree as ET
+          host = "toolpilot-guide.onrender.com"
+          urls = [n.text for n in ET.parse('/tmp/toolpilot-sitemap.xml').findall('.//{http://www.sitemaps.org/schemas/sitemap/0.9}loc')]
+          assert urls and all(u.startswith('https://' + host + '/') for u in urls)
+          with open('/tmp/toolpilot-indexnow.json', 'w') as f:
+              json.dump({'host': host, 'key': 'c50ed6e272f44a9686a7bd1e735b910d', 'urlList': urls}, f)
+          print('Submitting', len(urls), 'canonical URLs from the live sitemap')
+          PYTHON
           RESPONSE=$(curl --silent --show-error --max-time 30 -w '%{http_code}' -o /tmp/indexnow.response \
             -X POST 'https://api.indexnow.org/indexnow' \
             -H 'Content-Type: application/json; charset=utf-8' \
-            --data-binary "{\"host\":\"toolpilot-guide.onrender.com\",\"key\":\"$KEY\",\"urlList\":[\"$HOST/\",\"$HOST/es/\",\"$HOST/guides/beehiiv-newsletter.html\",\"$HOST/es/guias/beehiiv-newsletter.html\",\"$HOST/guides/newsletter-platform-costs.html\",\"$HOST/es/guias/costes-plataforma-newsletter.html\",\"$HOST/es/herramientas/calculadora-newsletter.html\"]}")
+            --data-binary @/tmp/toolpilot-indexnow.json)
           echo "IndexNow HTTP status: $RESPONSE"
           case "$RESPONSE" in
             200|202) echo "Submission received for processing; indexing is NOT guaranteed";;
