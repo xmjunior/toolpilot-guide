@@ -44,7 +44,7 @@
     const message = document.createElement("p");
     message.style.cssText = "margin:0 0 14px;color:#e0ddd7";
     message.textContent = isEs
-      ? "¿Nos permites medir visitas anónimas y mejorar la web usando Metricool? Es opcional. Puedes continuar sin seguimiento."
+      ? "¿Nos permites medir visitas y mejorar la web usando Metricool? Es opcional. Puedes continuar sin seguimiento."
       : "May we use Metricool to measure visits and improve our site? This is optional. You can continue without analytics.";
     const controls = document.createElement("div");
     controls.style.cssText = "display:flex;flex-wrap:wrap;gap:10px;align-items:center";
@@ -71,6 +71,19 @@
     banner.appendChild(controls);
     document.body.appendChild(banner);
   }
+  function addPrivacyLink() {
+    if (document.getElementById("tp-privacy-link")) return;
+    const link = document.createElement("a");
+    link.id = "tp-privacy-link";
+    link.href = isEs ? "/es/privacidad.html" : "/privacy.html";
+    link.textContent = isEs ? "Privacidad y estadísticas" : "Privacy & analytics";
+    link.style.cssText = "display:inline-block;color:#dfbd83;font:12px/1.5 system-ui,sans-serif;text-decoration:underline;margin:8px 14px";
+    const footer = document.querySelector("footer");
+    if (footer) footer.appendChild(link);
+    else document.body.appendChild(link);
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", addPrivacyLink, {once: true});
+  else addPrivacyLink();
   const consent = readConsent();
   if (consent === "accepted") beginTracking();
   else if (consent !== "declined") {
