@@ -9,6 +9,7 @@ on:
       - "tools/**/*.html"
       - "newsletter-resources.html"
       - "sitemap.xml"
+      - ".github/workflows/indexnow.yml"
   workflow_dispatch:
 permissions:
   contents: read
@@ -22,22 +23,32 @@ jobs:
           set -euo pipefail
           KEY="c50ed6e272f44a9686a7bd1e735b910d"
           HOST="https://toolpilot-guide.onrender.com"
-          echo "Waiting briefly for the static-site publish to propagate"
-          sleep 60
-          KEY_RESPONSE=$(curl --location --silent --show-error --max-time 25 "$HOST/$KEY.txt" || true)
-          if [ "$KEY_RESPONSE" != "$KEY" ]; then
-            echo "Key verification file unavailable; do not claim indexing" >&2
-            exit 1
-          fi
-          curl --fail --location --silent --show-error --max-time 25 "$HOST/sitemap.xml" -o /tmp/toolpilot-sitemap.xml
           python3 - <<'PYTHON'
-          import json, xml.etree.ElementTree as ET
+          import json, os, time, urllib.request, xml.etree.ElementTree as ET
           host = "toolpilot-guide.onrender.com"
-          urls = [n.text for n in ET.parse('/tmp/toolpilot-sitemap.xml').findall('.//{http://www.sitemaps.org/schemas/sitemap/0.9}loc')]
-          assert urls and all(u.startswith('https://' + host + '/') for u in urls)
+          base = "https://" + host
+          key = "c50ed6e272f44a9686a7bd1e735b910d"
+          def read(url):
+              req = urllib.request.Request(url, headers={'Cache-Control': 'no-cache'})
+              return urllib.request.urlopen(req, timeout=25).read()
+          def urls(data):
+              return sorted(n.text for n in ET.fromstring(data).findall('{http://www.sitemaps.org/schemas/sitemap/0.9}url/{http://www.sitemaps.org/schemas/sitemap/0.9}loc'))
+          source = 'https://raw.githubusercontent.com/' + os.environ['GITHUB_REPOSITORY'] + '/' + os.environ['GITHUB_SHA'] + '/sitemap.xml'
+          expected = urls(read(source))
+          assert expected and all(u.startswith(base + '/') for u in expected)
+          for attempt in range(18):
+              try:
+                  live = urls(read(base + '/sitemap.xml'))
+                  if live == expected and read(base + '/' + key + '.txt').decode().strip() == key:
+                      break
+              except Exception as error:
+                  print('Live sitemap check:', type(error).__name__)
+              if attempt == 17:
+                  raise SystemExit('Current sitemap is not live yet; do not notify stale URLs. Deploy and rerun.')
+              time.sleep(10)
           with open('/tmp/toolpilot-indexnow.json', 'w') as f:
-              json.dump({'host': host, 'key': 'c50ed6e272f44a9686a7bd1e735b910d', 'urlList': urls}, f)
-          print('Submitting', len(urls), 'canonical URLs from the live sitemap')
+              json.dump({'host': host, 'key': key, 'urlList': expected}, f)
+          print('Submitting', len(expected), 'canonical URLs after confirming the current sitemap is live')
           PYTHON
           RESPONSE=$(curl --silent --show-error --max-time 30 -w '%{http_code}' -o /tmp/indexnow.response \
             -X POST 'https://api.indexnow.org/indexnow' \

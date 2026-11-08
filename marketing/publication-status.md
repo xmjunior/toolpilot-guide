@@ -34,3 +34,17 @@ Search caches showed older beehiiv plan names and rates. The live official selec
 The existing ToolPilot-only Metricool connection returned zero recorded views/visits/visitors for November 8 at the pre-release check. Analytics requires visitor opt-in; this is not proof of zero actual visits. Referral sources and pages are available, but calculator interaction events and affiliate conversions were not verified. Do not invent them.
 
 The sitemap and IndexNow submission aid discovery, not guaranteed indexing. Search Console ownership/index status has not been verified. Do not buy traffic, create social accounts, send bulk outreach or alter other projects.
+
+## Additional distribution on November 8
+
+- Online Business Owner: resource form displayed “Thank You for Your Submission!” and confirmed editorial review. Pending; no public listing yet.
+- Newsletter Hub FYI: form submitted and cleared; no explicit receipt or publication verified. Do not resubmit without resolving status.
+- Four individual editorial suggestions sent to Inbox Collective, NewsletterAlts, IdeaStream and EmailTooltester. Sending was confirmed; acceptance and publication are not yet confirmed. Do not send duplicate introductory messages.
+
+## Release verification
+
+- Three new guides in both English and Spanish, resource hubs, editable platform-fee comparators and free embeddable break-even calculators published.
+- Six mathematical checks passed, including zero revenue, invalid inputs and fee crossover.
+- Live browser checks confirmed recalculation, zero-rate handling, scenario-link restoration and the standalone embed.
+- Optional analytics was declined during browser QA to avoid deliberate test visits entering the audience baseline.
+- The first IndexNow run happened before the new deploy and submitted the previous eight URLs. The workflow now waits for the current sitemap before submitting, avoiding that race.
