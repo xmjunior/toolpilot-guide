@@ -9,6 +9,10 @@
   const net = document.getElementById(es ? 'profit' : 'net');
   const sales = document.getElementById(es ? 'detail' : 'sales');
   const threshold = document.getElementById(es ? 'breakEven' : 'breakeven');
+  const sensitivity = document.createElement('p');
+  sensitivity.id = 'rate-sensitivity';
+  sensitivity.style.cssText = 'font-size:13px;line-height:1.5;margin-top:10px;opacity:.9';
+  threshold.insertAdjacentElement('afterend', sensitivity);
   const path = es ? '/es/herramientas/calculadora-newsletter.html' : '/tools/newsletter-break-even-calculator.html';
   const base = 'https://toolpilot-guide.onrender.com' + path;
   function restore() {
@@ -18,11 +22,22 @@
   function calculate() {
     const result = ToolPilotMath.breakEven(...fields.map(f => f.value));
     if (!result) {
-      net.textContent = '—'; sales.textContent = t('Completa los cuatro campos con valores dentro de los límites indicados.', 'Complete all four fields with values within the displayed limits.'); threshold.textContent = ''; return null;
+      net.textContent = '—'; sales.textContent = t('Completa los cuatro campos con valores dentro de los límites indicados.', 'Complete all four fields with values within the displayed limits.'); threshold.textContent = ''; sensitivity.textContent = ''; return null;
     }
     net.textContent = money(result.net);
     sales.textContent = t('Compras hipotéticas al mes: ', 'Hypothetical monthly purchases: ') + count(result.sales) + t(' · Margen total: ', ' · Total contribution: ') + money(result.contribution);
     threshold.textContent = result.needed === null ? t('No se pueden cubrir costes positivos con una tasa de compra o margen igual a cero.', 'Positive costs cannot be covered with a zero purchase rate or margin.') : t('Suscriptores necesarios para cubrir costes: ', 'Subscribers needed to cover costs: ') + count(result.needed);
+    // A small what-if comparison helps users avoid treating one conversion assumption as a prediction.
+    sensitivity.textContent = '';
+    if (result.rate > 0 && result.margin > 0 && result.cost > 0) {
+      const lowerRate = result.rate / 2, higherRate = Math.min(100, result.rate * 2);
+      const lower = ToolPilotMath.breakEven(0, lowerRate, result.margin, result.cost);
+      const higher = ToolPilotMath.breakEven(0, higherRate, result.margin, result.cost);
+      const fmtRate = n => new Intl.NumberFormat(es ? 'es-ES' : 'en-US', {maximumSignificantDigits:8}).format(n);
+      sensitivity.textContent = es
+        ? `Sensibilidad (escenarios, no pronósticos): con una tasa de compra del ${fmtRate(lowerRate)}% necesitarías ${count(lower.needed)} suscriptores; con ${fmtRate(higherRate)}%, ${count(higher.needed)}.`
+        : `Sensitivity (scenarios, not forecasts): a ${fmtRate(lowerRate)}% purchase rate would require ${count(lower.needed)} subscribers; at ${fmtRate(higherRate)}%, ${count(higher.needed)}.`;
+    }
     return result;
   }
   async function copy(text, button) {
