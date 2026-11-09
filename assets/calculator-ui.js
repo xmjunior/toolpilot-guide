@@ -40,9 +40,9 @@
     } else if (minRate > 100) {
       requiredRate.textContent = t('Con estos suscriptores y margen, ni siquiera una tasa de compra del 100% cubriría los costes.', 'At this subscriber count and margin, even a 100% purchase rate would not cover costs.');
     } else {
-      const shownRate = Math.ceil(minRate * 1000 - 1e-10) / 1000;
+      const shownRate = minRate === 0 ? 0 : Math.max(0.001, Math.ceil(minRate * 1000 - 1e-10) / 1000);
       const rateLabel = new Intl.NumberFormat(es ? 'es-ES' : 'en-US', {maximumFractionDigits:3}).format(shownRate);
-      requiredRate.textContent = t('Tasa de compra mínima para cubrir costes con estos suscriptores: ', 'Minimum purchase rate to break even with these subscribers: ') + rateLabel + '%. ' +
+      requiredRate.textContent = t('Tasa de compra para cubrir costes con estos suscriptores (redondeada al alza): ', 'Break-even purchase rate with these subscribers (rounded up): ') + rateLabel + '%. ' +
         t('Modelo hipotético de una compra por comprador al mes.', 'Hypothetical model with one purchase per buyer per month.');
     }
     // A small what-if comparison helps users avoid treating one conversion assumption as a prediction.
