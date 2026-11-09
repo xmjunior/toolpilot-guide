@@ -12,7 +12,11 @@
   const sensitivity = document.createElement('p');
   sensitivity.id = 'rate-sensitivity';
   sensitivity.style.cssText = 'font-size:13px;line-height:1.5;margin-top:10px;opacity:.9';
-  threshold.insertAdjacentElement('afterend', sensitivity);
+  const requiredRate = document.createElement('p');
+  requiredRate.id = 'required-purchase-rate';
+  requiredRate.style.cssText = 'font-size:13px;line-height:1.5;margin:8px 0';
+  threshold.insertAdjacentElement('afterend', requiredRate);
+  requiredRate.insertAdjacentElement('afterend', sensitivity);
   const path = es ? '/es/herramientas/calculadora-newsletter.html' : '/tools/newsletter-break-even-calculator.html';
   const base = 'https://toolpilot-guide.onrender.com' + path;
   function restore() {
@@ -22,11 +26,25 @@
   function calculate() {
     const result = ToolPilotMath.breakEven(...fields.map(f => f.value));
     if (!result) {
-      net.textContent = '—'; sales.textContent = t('Completa los cuatro campos con valores dentro de los límites indicados.', 'Complete all four fields with values within the displayed limits.'); threshold.textContent = ''; sensitivity.textContent = ''; return null;
+      net.textContent = '—'; sales.textContent = t('Completa los cuatro campos con valores dentro de los límites indicados.', 'Complete all four fields with values within the displayed limits.'); threshold.textContent = ''; requiredRate.textContent = ''; sensitivity.textContent = ''; return null;
     }
     net.textContent = money(result.net);
     sales.textContent = t('Compras hipotéticas al mes: ', 'Hypothetical monthly purchases: ') + count(result.sales) + t(' · Margen total: ', ' · Total contribution: ') + money(result.contribution);
     threshold.textContent = result.needed === null ? t('No se pueden cubrir costes positivos con una tasa de compra o margen igual a cero.', 'Positive costs cannot be covered with a zero purchase rate or margin.') : t('Suscriptores necesarios para cubrir costes: ', 'Subscribers needed to cover costs: ') + count(result.needed);
+    // Reverse the same model: what purchase rate would cover costs at the subscriber count entered?
+    // Round the displayed threshold upward, so rounding cannot suggest a rate below break-even.
+    const minRate = result.cost === 0 ? 0 :
+      (result.subs > 0 && result.margin > 0 ? result.cost / (result.subs * result.margin) * 100 : null);
+    if (minRate === null) {
+      requiredRate.textContent = t('Con cero suscriptores o margen cero no se pueden cubrir costes positivos.', 'With zero subscribers or zero margin, positive costs cannot be covered.');
+    } else if (minRate > 100) {
+      requiredRate.textContent = t('Con estos suscriptores y margen, ni siquiera una tasa de compra del 100% cubriría los costes.', 'At this subscriber count and margin, even a 100% purchase rate would not cover costs.');
+    } else {
+      const shownRate = Math.ceil(minRate * 1000 - 1e-10) / 1000;
+      const rateLabel = new Intl.NumberFormat(es ? 'es-ES' : 'en-US', {maximumFractionDigits:3}).format(shownRate);
+      requiredRate.textContent = t('Tasa de compra mínima para cubrir costes con estos suscriptores: ', 'Minimum purchase rate to break even with these subscribers: ') + rateLabel + '%. ' +
+        t('Modelo hipotético de una compra por comprador al mes.', 'Hypothetical model with one purchase per buyer per month.');
+    }
     // A small what-if comparison helps users avoid treating one conversion assumption as a prediction.
     sensitivity.textContent = '';
     if (result.rate > 0 && result.margin > 0 && result.cost > 0) {
