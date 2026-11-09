@@ -15,9 +15,9 @@ Revenue path: disclosed beehiiv affiliate link inside the guide/site. Never clai
 ## Directory listing copy — English
 
 Name: ToolPilot Guide — Newsletter Break-even Calculator
-URL: https://toolpilot-guide.onrender.com/es/herramientas/calculadora-newsletter.html
+URL: https://toolpilot-guide.onrender.com/tools/newsletter-break-even-calculator.html
 Tagline: Free newsletter break-even calculator — no signup.
-Description: A free, Spanish-language interactive calculator that helps newsletter creators estimate how many subscribers and conversions they would need to cover ongoing costs. Change monthly expenses, product margin and hypothetical purchase rates to explore scenarios. Runs in the browser, no registration, no income promises.
+Description: A free, English-language interactive calculator that helps newsletter creators estimate how many subscribers and conversions they would need to cover ongoing costs. Change monthly expenses, product margin and hypothetical purchase rates to explore scenarios. Runs in the browser, no registration, no income promises.
 Category: Marketing / Calculator / Creator Tools
 Tags: newsletter, calculator, marketing, creator economy, free tools
 Pricing: Free
@@ -59,7 +59,7 @@ Disclosure: “ToolPilot tiene enlaces de afiliado identificados en sus guías.�
 Hook: “Before paying for newsletter software, calculate your break-even audience.”
 Show the four inputs, change conversion rate, explain that the result is illustrative and actual buyer demand is uncertain.
 CTA: “Free calculator, no signup, in the link.”
-URL: https://toolpilot-guide.onrender.com/es/herramientas/calculadora-newsletter.html?utm_source=youtube&utm_medium=shorts&utm_campaign=calculator_launch
+URL: https://toolpilot-guide.onrender.com/tools/newsletter-break-even-calculator.html?utm_source=youtube&utm_medium=shorts&utm_campaign=calculator_launch
 
 ## LinkedIn post — Spanish
 
