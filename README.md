@@ -1,8 +1,9 @@
 # ToolPilot Guide — Free Business Tool Research
 
-**Live website:** https://toolpilot-guide.onrender.com/es/  
-**Free newsletter break-even calculator:** https://toolpilot-guide.onrender.com/es/herramientas/calculadora-newsletter.html  
-**English buying guides:** https://toolpilot-guide.onrender.com/
+**English website:** https://toolpilot-guide.onrender.com/  
+**English newsletter break-even calculator:** https://toolpilot-guide.onrender.com/tools/newsletter-break-even-calculator.html  
+**Spanish website:** https://toolpilot-guide.onrender.com/es/  
+**Spanish newsletter break-even calculator:** https://toolpilot-guide.onrender.com/es/herramientas/calculadora-newsletter.html
 
 ToolPilot Guide offers free, practical software-choice resources for entrepreneurs, including a browser-based calculator that estimates the newsletter audience and hypothetical conversions required to cover ongoing costs. The calculator works without an account, does not ask users to upload data, and makes no income guarantees.
 
@@ -14,7 +15,7 @@ Newsletter creators, small businesses, online entrepreneurs and people comparing
 
 Enter a subscriber count, hypothetical purchase conversion rate, margin per purchase and monthly fixed costs. The tool calculates a hypothetical monthly result and a break-even subscriber count. It is **not** an earnings prediction.
 
-[Open the free calculator](https://toolpilot-guide.onrender.com/es/herramientas/calculadora-newsletter.html?utm_source=github&utm_medium=referral&utm_campaign=toolpilot_launch)
+[Open the free calculator in English](https://toolpilot-guide.onrender.com/tools/newsletter-break-even-calculator.html?utm_source=github&utm_medium=referral&utm_campaign=toolpilot_launch) · [Versión española](https://toolpilot-guide.onrender.com/es/herramientas/calculadora-newsletter.html?utm_source=github&utm_medium=referral&utm_campaign=toolpilot_launch)
 
 ## Transparency
 
