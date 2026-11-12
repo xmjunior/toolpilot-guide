@@ -1,4 +1,4 @@
-/* ToolPilot Guide — anonymous conversion events, no cookies or fingerprinting. */
+/* ToolPilot Guide — first-party anonymous funnel events. No cookies or fingerprinting. */
 (function(){
   "use strict";
   const endpoint="https://rjgpwcmfgdkmlplifwck.supabase.co/functions/v1/toolpilot-event";
@@ -24,10 +24,10 @@
 
   function send(event_name,target){
     const body=JSON.stringify({
-      event_name: event_name,
-      target: target,
-      page_path: location.pathname,
-      source: source()
+      event_name:event_name,
+      target:target||"",
+      page_path:location.pathname,
+      source:source()
     });
     const fallback=()=>fetch(endpoint,{
       method:"POST",
@@ -38,9 +38,13 @@
     try {
       if(typeof navigator.sendBeacon==="function" &&
          navigator.sendBeacon(endpoint,new Blob([body],{type:"application/json"}))) return;
-    } catch(_) { /* Fall back to fetch below. */ }
+    } catch(_) {}
     fallback();
   }
+
+  function pageView(){ send("page_view",document.title.slice(0,250)); }
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",pageView,{once:true});
+  else pageView();
 
   document.addEventListener("click",function(e){
     if(!(e.target instanceof Element)) return;
