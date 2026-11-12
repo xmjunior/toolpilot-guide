@@ -1,37 +1,44 @@
-# ToolPilot Guide — Free Business Tool Research
+# ToolPilot Guide — Verified SaaS Deals + Free Cost Checkers
 
-**English website:** https://toolpilot-guide.onrender.com/  
-**English newsletter break-even calculator:** https://toolpilot-guide.onrender.com/tools/newsletter-break-even-calculator.html  
-**Spanish website:** https://toolpilot-guide.onrender.com/es/  
-**Spanish newsletter break-even calculator:** https://toolpilot-guide.onrender.com/es/herramientas/calculadora-newsletter.html
+**Primary Black Friday campaign:** https://toolpilot-guide.onrender.com/go/black-friday-saas-deal-checker-2026.html?utm_source=github&utm_medium=referral&utm_campaign=bf2026&utm_content=repo_readme  
+**Verified SaaS deals 2026:** https://toolpilot-guide.onrender.com/black-friday/verified-saas-deals-2026.html?utm_source=github&utm_medium=referral&utm_campaign=bf2026&utm_content=repo_readme_deals  
+**Website:** https://toolpilot-guide.onrender.com/  
+**Spanish:** https://toolpilot-guide.onrender.com/es/
 
-ToolPilot Guide offers free, practical software-choice resources for entrepreneurs, including a browser-based calculator that estimates the newsletter audience and hypothetical conversions required to cover ongoing costs. The calculator works without an account, does not ask users to upload data, and makes no income guarantees.
+ToolPilot Guide helps buyers decide whether software is actually worth paying for. It combines independent buying guides with free calculators for renewal cost, revenue-share models, APIs, hosting, add-ons and maintenance time.
 
-## Who is it for?
+## Black Friday 2026
 
-Newsletter creators, small businesses, online entrepreneurs and people comparing publishing tools. The site publishes independent educational guides in English and Spanish.
+The campaign focuses on one question:
 
-## Try the calculator
+> Is the deal still good after renewal and hidden operating costs?
 
-Enter a subscriber count, hypothetical purchase conversion rate, margin per purchase and monthly fixed costs. The tool calculates a hypothetical monthly result and a break-even subscriber count. It is **not** an earnings prediction.
+The free **Black Friday SaaS Deal Checker** models the discounted term, renewal, APIs/hosting/add-ons and maintenance or migration time. No signup is required to use it.
 
-[Open the free calculator in English](https://toolpilot-guide.onrender.com/tools/newsletter-break-even-calculator.html?utm_source=github&utm_medium=referral&utm_campaign=toolpilot_launch) · [Versión española](https://toolpilot-guide.onrender.com/es/herramientas/calculadora-newsletter.html?utm_source=github&utm_medium=referral&utm_campaign=toolpilot_launch)
+[Open the free deal checker](https://toolpilot-guide.onrender.com/go/black-friday-saas-deal-checker-2026.html?utm_source=github&utm_medium=referral&utm_campaign=bf2026&utm_content=repo_checker)
+
+The **Verified Black Friday SaaS Deals 2026** page separates:
+- offers live now,
+- announced offers that have not started,
+- vendors where no current 2026 offer has been verified.
+
+[See verified live and announced deals](https://toolpilot-guide.onrender.com/black-friday/verified-saas-deals-2026.html?utm_source=github&utm_medium=referral&utm_campaign=bf2026&utm_content=repo_deals)
+
+## Other free tools
+
+- [Newsletter break-even calculator](https://toolpilot-guide.onrender.com/tools/newsletter-break-even-calculator.html?utm_source=github&utm_medium=referral&utm_campaign=toolpilot)
+- [Newsletter platform cost calculator](https://toolpilot-guide.onrender.com/tools/newsletter-platform-cost-calculator.html?utm_source=github&utm_medium=referral&utm_campaign=toolpilot)
+- [Free newsletter planning resources](https://toolpilot-guide.onrender.com/newsletter-resources.html?utm_source=github&utm_medium=referral&utm_campaign=toolpilot)
+- [Spanish calculator](https://toolpilot-guide.onrender.com/es/herramientas/calculadora-newsletter.html?utm_source=github&utm_medium=referral&utm_campaign=toolpilot)
 
 ## Transparency
 
-The website currently includes a disclosed referral link to the beehiiv partner program. Qualifying paid subscriptions might generate a commission. We do not claim any verified sales, paid referrals, rankings, user counts or income. Other vendors' links are not affiliate links.
+ToolPilot Guide may earn a commission from clearly labelled affiliate links, currently including qualifying beehiiv referrals. Rankings are not sold. Non-affiliate and free alternatives are included when they can be the better choice.
 
-## What's next?
+No earnings guarantees are made. Vendor pricing and Black Friday terms can change, so the vendor's official page and checkout remain the final source of truth.
 
-Improve the calculator, provide more original buying guides, add privacy-respecting aggregate analytics with proper consent/compliance, and acquire genuinely interested visitors via authorized communities and search. We welcome actionable product feedback.
+## Technical checks
+
+Production is monitored with a public-funnel smoke workflow. The commercial funnel also records privacy-limited first-party events such as anonymous page views, affiliate clicks and successful consent-based watchlist submissions without cookies or fingerprinting.
 
 © 2026 ToolPilot Guide.
-
-## Free newsletter planning resources
-
-- [English resource hub](https://toolpilot-guide.onrender.com/newsletter-resources.html)
-- [Recursos en español](https://toolpilot-guide.onrender.com/es/recursos-newsletter.html)
-- [Platform cost calculator](https://toolpilot-guide.onrender.com/tools/newsletter-platform-cost-calculator.html)
-- [Embeddable calculator](https://toolpilot-guide.onrender.com/embed/newsletter.html) — no third-party analytics in the embed.
-
-The calculators share dependency-free maths. Run `node --test tests/calculators.test.cjs` to verify break-even and fee comparison scenarios. Platform comparisons exclude payment processing and taxes, and distinguish monthly billing from annual equivalents.
