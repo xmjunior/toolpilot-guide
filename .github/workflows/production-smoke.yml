@@ -1,0 +1,53 @@
+name: ToolPilot production smoke
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
+
+permissions:
+  contents: read
+
+jobs:
+  production-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Wait for Render static deploy
+        if: github.event_name == 'push'
+        run: sleep 75
+
+      - name: Verify public funnel
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE="https://toolpilot-guide.onrender.com"
+
+          fetch() {
+            local url="$1" out="$2"
+            curl -fsSL --retry 3 --retry-delay 5 --connect-timeout 15 --max-time 30 "$url" -o "$out"
+          }
+
+          fetch "$BASE/" /tmp/home.html
+          fetch "$BASE/black-friday/saas-cost-calculator.html" /tmp/bf.html
+          fetch "$BASE/assets/watchlist.js" /tmp/watchlist.js
+          fetch "$BASE/assets/outbound-tracking.js" /tmp/tracking.js
+          fetch "$BASE/privacy.html" /tmp/privacy.html
+          fetch "$BASE/sitemap.xml" /tmp/sitemap.xml
+          fetch "https://rjgpwcmfgdkmlplifwck.supabase.co/functions/v1/toolpilot-event" /tmp/event.json
+          fetch "https://rjgpwcmfgdkmlplifwck.supabase.co/functions/v1/toolpilot-lead-capture" /tmp/lead.json
+
+          grep -q 'homepage-black-friday-watchlist' /tmp/home.html
+          grep -q 'Verified deals. Renewal prices. Free alternatives.' /tmp/home.html
+          grep -q 'Get the verified deal watchlist' /tmp/bf.html
+          grep -q 'data-toolpilot-watchlist' /tmp/home.html
+          grep -q 'toolpilot-lead-capture' /tmp/watchlist.js
+          grep -q 'page_view' /tmp/tracking.js
+          grep -q 'first-party anonymous events' /tmp/privacy.html
+          grep -q '/black-friday/saas-cost-calculator.html' /tmp/sitemap.xml
+          grep -q '"version":"2"' /tmp/event.json
+          grep -q '"service":"toolpilot-lead-capture"' /tmp/lead.json
+
+          echo "PASS: ToolPilot public funnel is live and internally consistent."
