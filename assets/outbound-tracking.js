@@ -48,9 +48,19 @@
 
   document.addEventListener("click",function(e){
     if(!(e.target instanceof Element)) return;
+    const anchor=e.target.closest("a[href]");
     const affiliate=e.target.closest('a[data-affiliate],a[rel~="sponsored"],a[href*="via=mario-belmonte"]');
-    if(affiliate) send("affiliate_click",affiliate.dataset.affiliate||affiliate.href);
+    if(affiliate) {
+      send("affiliate_click",affiliate.dataset.affiliate||affiliate.href);
+    } else if(anchor) {
+      try {
+        const u=new URL(anchor.href,location.href);
+        if(/^https?:$/.test(u.protocol) && u.hostname!==location.hostname) send("outbound_official_click",u.href);
+      } catch(_) {}
+    }
     const freebie=e.target.closest("a[data-freebie]");
     if(freebie) send("freebie_open",freebie.dataset.freebie||freebie.href);
+    const cta=e.target.closest("a.btn,a.textlink");
+    if(cta && !affiliate) send("cta_click",cta.getAttribute("href")||"");
   });
 })();
