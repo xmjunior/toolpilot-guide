@@ -48,7 +48,7 @@
 
   document.addEventListener("click",function(e){
     if(!(e.target instanceof Element)) return;
-    const affiliate=e.target.closest("a[data-affiliate]");
+    const affiliate=e.target.closest('a[data-affiliate],a[rel~="sponsored"],a[href*="via=mario-belmonte"]');
     if(affiliate) send("affiliate_click",affiliate.dataset.affiliate||affiliate.href);
     const freebie=e.target.closest("a[data-freebie]");
     if(freebie) send("freebie_open",freebie.dataset.freebie||freebie.href);
