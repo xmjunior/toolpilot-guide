@@ -1,44 +1,52 @@
-# ToolPilot Guide — Verified SaaS Deals + Free Cost Checkers
+# ToolPilot Guide — Free SaaS Decision Tools + Buying Guides
 
-**Primary Black Friday campaign:** https://toolpilot-guide.onrender.com/go/black-friday-saas-deal-checker-2026.html?utm_source=github&utm_medium=referral&utm_campaign=bf2026&utm_content=repo_readme  
-**Verified SaaS deals 2026:** https://toolpilot-guide.onrender.com/black-friday/verified-saas-deals-2026.html?utm_source=github&utm_medium=referral&utm_campaign=bf2026&utm_content=repo_readme_deals  
+**Free SaaS Stack Cost Audit:** https://toolpilot-guide.onrender.com/tools/saas-stack-cost-audit.html?utm_source=github&utm_medium=referral&utm_campaign=saas_audit  
+**Free SaaS Savings Review:** https://toolpilot-guide.onrender.com/free-saas-savings-review.html?utm_source=github&utm_medium=referral&utm_campaign=free_review  
+**All free tools:** https://toolpilot-guide.onrender.com/free-tools.html?utm_source=github&utm_medium=referral&utm_campaign=toolpilot  
 **Website:** https://toolpilot-guide.onrender.com/  
-**Spanish:** https://toolpilot-guide.onrender.com/es/
+**Spanish review:** https://toolpilot-guide.onrender.com/es/revision-ahorro-saas.html?utm_source=github&utm_medium=referral&utm_campaign=free_review_es
 
-ToolPilot Guide helps buyers decide whether software is actually worth paying for. It combines independent buying guides with free calculators for renewal cost, revenue-share models, APIs, hosting, add-ons and maintenance time.
+ToolPilot Guide helps businesses and software buyers make better buying decisions using independent comparisons, total-cost calculators and free diagnostic tools.
 
-## Black Friday 2026
+## Start here
 
-The campaign focuses on one question:
+### 1. Audit your current SaaS stack
+The free **SaaS Stack Cost Audit** estimates annual software spend, low-utilization cost and duplicate software categories.
 
-> Is the deal still good after renewal and hidden operating costs?
+[Run the free SaaS Stack Cost Audit](https://toolpilot-guide.onrender.com/tools/saas-stack-cost-audit.html?utm_source=github&utm_medium=referral&utm_campaign=saas_audit)
 
-The free **Black Friday SaaS Deal Checker** models the discounted term, renewal, APIs/hosting/add-ons and maintenance or migration time. No signup is required to use it.
+### 2. Request a free manual review
+Businesses can request a short **SaaS Savings Review** focused on the biggest cost, overlap or migration question worth checking next.
 
-[Open the free deal checker](https://toolpilot-guide.onrender.com/go/black-friday-saas-deal-checker-2026.html?utm_source=github&utm_medium=referral&utm_campaign=bf2026&utm_content=repo_checker)
+[Request a free SaaS Savings Review](https://toolpilot-guide.onrender.com/free-saas-savings-review.html?utm_source=github&utm_medium=referral&utm_campaign=free_review)
 
-The **Verified Black Friday SaaS Deals 2026** page separates:
-- offers live now,
-- announced offers that have not started,
-- vendors where no current 2026 offer has been verified.
+No passwords, invoices or sensitive data are required. No savings are guaranteed.
 
-[See verified live and announced deals](https://toolpilot-guide.onrender.com/black-friday/verified-saas-deals-2026.html?utm_source=github&utm_medium=referral&utm_campaign=bf2026&utm_content=repo_deals)
+## Free calculators
 
-## Other free tools
-
+- [SaaS total cost calculator](https://toolpilot-guide.onrender.com/tools/saas-total-cost-calculator.html?utm_source=github&utm_medium=referral&utm_campaign=toolpilot)
+- [SaaS Stack Cost Audit](https://toolpilot-guide.onrender.com/tools/saas-stack-cost-audit.html?utm_source=github&utm_medium=referral&utm_campaign=toolpilot)
+- [Ecommerce platform cost calculator](https://toolpilot-guide.onrender.com/tools/ecommerce-platform-cost-calculator.html?utm_source=github&utm_medium=referral&utm_campaign=toolpilot)
 - [Newsletter break-even calculator](https://toolpilot-guide.onrender.com/tools/newsletter-break-even-calculator.html?utm_source=github&utm_medium=referral&utm_campaign=toolpilot)
 - [Newsletter platform cost calculator](https://toolpilot-guide.onrender.com/tools/newsletter-platform-cost-calculator.html?utm_source=github&utm_medium=referral&utm_campaign=toolpilot)
-- [Free newsletter planning resources](https://toolpilot-guide.onrender.com/newsletter-resources.html?utm_source=github&utm_medium=referral&utm_campaign=toolpilot)
-- [Spanish calculator](https://toolpilot-guide.onrender.com/es/herramientas/calculadora-newsletter.html?utm_source=github&utm_medium=referral&utm_campaign=toolpilot)
+- [Black Friday SaaS cost checker](https://toolpilot-guide.onrender.com/black-friday/saas-cost-calculator.html?utm_source=github&utm_medium=referral&utm_campaign=bf2026)
+
+## Buying decision centers
+
+- [Newsletter platforms](https://toolpilot-guide.onrender.com/newsletter-platforms.html?utm_source=github&utm_medium=referral&utm_campaign=toolpilot)
+- [Email marketing software](https://toolpilot-guide.onrender.com/email-marketing.html?utm_source=github&utm_medium=referral&utm_campaign=toolpilot)
+- [Ecommerce platforms](https://toolpilot-guide.onrender.com/ecommerce.html?utm_source=github&utm_medium=referral&utm_campaign=toolpilot)
+
+## Editorial method
+
+ToolPilot Guide uses primary vendor sources for pricing, plan limits and partner terms whenever possible. Comparisons separate facts from assumptions and clearly label affiliate relationships.
+
+[Read the methodology](https://toolpilot-guide.onrender.com/methodology.html?utm_source=github&utm_medium=referral&utm_campaign=toolpilot)
 
 ## Transparency
 
-ToolPilot Guide may earn a commission from clearly labelled affiliate links, currently including qualifying beehiiv referrals. Rankings are not sold. Non-affiliate and free alternatives are included when they can be the better choice.
+ToolPilot Guide may earn a commission from clearly labelled affiliate links. Affiliate availability does not determine the recommendation.
 
-No earnings guarantees are made. Vendor pricing and Black Friday terms can change, so the vendor's official page and checkout remain the final source of truth.
-
-## Technical checks
-
-Production is monitored with a public-funnel smoke workflow. The commercial funnel also records privacy-limited first-party events such as anonymous page views, affiliate clicks and successful consent-based watchlist submissions without cookies or fingerprinting.
+No earnings or savings guarantees are made. Vendor pricing, plans and terms can change, so the vendor's live pricing page and checkout remain the final source of truth.
 
 © 2026 ToolPilot Guide.
