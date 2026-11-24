@@ -1,3 +1,10 @@
 User-agent: *
 Allow: /
+
+User-agent: OpenSEO-Audit
+Disallow: /es/
+Disallow: /embed/
+Disallow: /black-friday/
+Disallow: /privacy-2026.html
+
 Sitemap: https://toolpilot-guide.onrender.com/sitemap.xml
