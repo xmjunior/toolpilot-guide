@@ -1,0 +1,59 @@
+{
+  "reviewed": "2026-11-24",
+  "sources": {
+    "activecampaign": [
+      "https://www.activecampaign.com/about/faq",
+      "https://www.activecampaign.com/partners/affiliate"
+    ],
+    "getresponse": [
+      "https://www.getresponse.com/pricing",
+      "https://www.getresponse.com/help/when-will-i-get-paid.html",
+      "https://www.getresponse.com/help/how-many-messages-can-i-send-using-my-free-account.html"
+    ],
+    "brevo": [
+      "https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans",
+      "https://help.brevo.com/hc/es/articles/16487784994322-Programa-de-Afiliados-Brevo"
+    ],
+    "mailerlite": [
+      "https://www.mailerlite.com/pricing"
+    ]
+  },
+  "platforms": {
+    "activecampaign": {
+      "name": "ActiveCampaign",
+      "free": "No permanent free plan · 14-day trial · up to 100 contacts / 100 emails in trial",
+      "paid": "Starts at $15/month for accounts under 1,000 contacts",
+      "strength": "Advanced marketing automation, segmentation and CRM-style lifecycle workflows.",
+      "watch": "No permanent free plan; pricing scales with contact volume and feature needs.",
+      "official": "https://www.activecampaign.com/pricing",
+      "affiliate": "Official affiliate program: 30% recurring commission for eligible referrals, paid for up to 12 months. ToolPilot has no active affiliate link yet."
+    },
+    "getresponse": {
+      "name": "GetResponse",
+      "free": "Free forever · up to 500 contacts · up to 2,500 messages/month",
+      "paid": "Starter from $15.58/month billed annually",
+      "strength": "Email marketing plus landing pages, funnels and lifecycle automation in one stack.",
+      "watch": "Free loses premium features after the initial trial; advanced automation requires paid tiers.",
+      "official": "https://www.getresponse.com/pricing",
+      "affiliate": "Official recurring affiliate program starts at 33%; a separate bounty program pays $100 per qualifying sale. ToolPilot has no active affiliate link yet."
+    },
+    "brevo": {
+      "name": "Brevo",
+      "free": "Free · 300 email sends/day · up to 100,000 stored contacts",
+      "paid": "Starter from $9/month · Standard from $18/month",
+      "strength": "Low-cost multichannel email, transactional messaging and automation with a generous free entry point.",
+      "watch": "Daily send limits and tier-specific automation/features matter more than raw contact storage.",
+      "official": "https://www.brevo.com/pricing/",
+      "affiliate": "Brevo has a PartnerStack affiliate program, but approval requires an established relevant website and professional email. ToolPilot has no active affiliate link yet."
+    },
+    "mailerlite": {
+      "name": "MailerLite",
+      "free": "Free · up to 250 active subscribers · 2,500 emails every 30 days",
+      "paid": "Paid plans start around the low-teens monthly and scale by subscriber tier",
+      "strength": "Simple general email marketing with forms, landing pages, sites and automation at a low starting cost.",
+      "watch": "The 2026 free plan is intentionally small; subscriber and email limits arrive quickly.",
+      "official": "https://www.mailerlite.com/pricing",
+      "affiliate": "ToolPilot has no active MailerLite affiliate link yet."
+    }
+  }
+}
