@@ -1,0 +1,41 @@
+{
+  "reviewed": "2026-11-24",
+  "shopify": {
+    "pricing": {
+      "monthly": {
+        "basic": 39,
+        "grow": 105,
+        "advanced": 399
+      },
+      "annual_equivalent": {
+        "basic": 29,
+        "grow": 79,
+        "advanced": 299
+      }
+    },
+    "affiliate": {
+      "status": "official program active; ToolPilot not yet approved",
+      "payout_us_uk_europe_usd": 150,
+      "latin_america_usd": 25,
+      "tracking_days": 30,
+      "trial_to_paid_tracking_days": 400
+    },
+    "sources": [
+      "https://www.shopify.com/pricing",
+      "https://help.shopify.com/en/affiliates/about",
+      "https://help.shopify.com/en/affiliates/earnings"
+    ]
+  },
+  "woocommerce": {
+    "core": "free",
+    "hosting_monthly_range_usd": [
+      25,
+      350
+    ],
+    "extensions_annual_range_usd": [
+      29,
+      299
+    ],
+    "source": "https://woocommerce.com/pricing/"
+  }
+}
