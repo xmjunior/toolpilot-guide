@@ -21,7 +21,10 @@
       },
       "searchAdsAllowed": false,
       "userSetupRequired": false,
-      "note": "Only currently confirmed ToolPilot affiliate; prioritize existing buyer-intent pages and distribution."
+      "note": "Only currently confirmed ToolPilot affiliate; prioritize existing buyer-intent pages and distribution.",
+      "payoutSetupVerified": false,
+      "payoutSetupStatus": "unknown",
+      "payoutNote": "No connected evidence currently confirms Dub/Stripe payout setup. This does not block referral tracking, but payout readiness is not certified."
     },
     {
       "key": "activecampaign",
