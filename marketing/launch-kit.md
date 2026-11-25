@@ -1,11 +1,11 @@
-> **STATUS: LEGACY REFERENCE — DO NOT EXECUTE AS A CURRENT CAMPAIGN.** As of November 25, 2026, ToolPilot's active goal is the first affiliate commission through high-intent SEO and the existing beehiiv partner relationship. Do not use Mario's personal LinkedIn, do not create social accounts that require Mario's setup time, do not send bulk outreach, and do not buy traffic without explicit approval. Current click measurement is first-party Supabase tracking; confirmed conversion/commission truth comes from the vendor partner dashboard/payout evidence.
+> **STATUS: LEGACY REFERENCE — DO NOT EXECUTE AS A CURRENT CAMPAIGN.** As of November 25, 2026, ToolPilot's active goal is the first affiliate commission through high-intent SEO and the existing beehiiv partner relationship. Do not use Mario's personal LinkedIn, do not create social accounts that require Mario's setup time, do not send bulk outreach, and do not buy traffic without explicit approval. Current measurement truth is layered: first-party Supabase records ToolPilot affiliate clicks; the beehiiv Partner Dashboard is authoritative for referred leads and paid conversions; Dub/Stripe Express is used for commission payout processing.
 
 # ToolPilot Guide — Distribution Kit (November 2026)
 
 Business: ToolPilot Guide, independent comparison and free browser calculator.
 Primary URL: https://toolpilot-guide.onrender.com/es/herramientas/calculadora-newsletter.html
 English site: https://toolpilot-guide.onrender.com/
-Historical revenue path: disclosed beehiiv affiliate link inside the guide/site. Never claim confirmed conversions or commissions without vendor partner-dashboard/payout evidence.
+Historical revenue path: disclosed beehiiv affiliate link inside the guide/site. Never claim a beehiiv lead or paid conversion without Partner Dashboard evidence, and never claim a paid payout without Dub/Stripe payout evidence.
 
 ## Campaign angle: Free calculator, no signup
 
@@ -80,12 +80,12 @@ No pide registro y no promete ingresos; es una herramienta para planificar. ¿Qu
 - No posting without an authorized connected account.
 - No fake testimonials, fabricated customers, purchased followers or automated upvote services.
 - Avoid Google/Bing paid search advertising to beehiiv affiliate links: disallowed by partner program.
-- Measure what matters: real visitors -> first-party affiliate clicks -> vendor-confirmed signup/purchase -> paid commission.
+- Measure what matters: real visitors -> Supabase affiliate clicks -> beehiiv Partner Dashboard leads/conversions -> Dub/Stripe paid commission.
 - UTM tags in URLs are NOT analytics by themselves; Google Search Console or privacy-aware analytics must be set up to see incoming visits.
 
 ## Practical next verification
 
 1. Confirm a listing is accepted, NOT merely submitted.
 2. Confirm channel post is public and its URL works.
-3. Track real landing visits with first-party events and confirm signups/sales only from the vendor partner dashboard after meaningful traffic.
+3. Track landing visits/clicks with first-party events, confirm leads/conversions in beehiiv Partner Dashboard, and confirm paid commission only from Dub/Stripe payout evidence.
 4. Retire tactics that bring no relevant users; do not multiply pages or posts blindly.
