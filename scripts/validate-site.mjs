@@ -91,6 +91,18 @@ for(const f of htmlFiles){
   for(const s of forbidden) if(html.includes(s)) errors.push(`Stale commercial copy in ${p}: "${s}"`);
 }
 
+const staleKnowledgePhrases=[
+  "we have not verified a beehiiv black friday 2026 promotion",
+  "no official black friday 2026 offer verified by toolpilot",
+  "the absence of a verified black friday offer"
+];
+for(const f of files.filter(p=>/\.(?:html|md)$/i.test(p))){
+  const p=rel(f), body=read(f).toLowerCase();
+  for(const phrase of staleKnowledgePhrases){
+    if(body.includes(phrase)) errors.push(`Stale beehiiv knowledge in ${p}: "${phrase}"`);
+  }
+}
+
 const sitemapPath=path.join(root,"sitemap.xml");
 if(!fs.existsSync(sitemapPath)) errors.push("Missing sitemap.xml");
 else{
