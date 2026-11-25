@@ -1,8 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
+import { validAffiliateUrl, isPromoActive } from "./revenue-rules.mjs";
 
 const root=process.cwd();
 const BASE="https://toolpilot-guide.onrender.com";
+const config=JSON.parse(fs.readFileSync(path.join(root,"data/revenue-opportunities-2026.json"),"utf8"));
+const activeAffiliates=config.opportunities.filter(o=>o.affiliateStatus==="active");
 const errors=[];
 const warnings=[];
 
@@ -72,7 +75,9 @@ for(const f of htmlFiles){
     affiliateCount++;
     let host="";
     try{host=new URL(href,BASE).hostname.replace(/^www\./,"");}catch{}
-    if(host!=="beehiiv.com") errors.push(`Unapproved affiliate host on ${p}: ${host||href}`);
+    const approved=activeAffiliates.find(o=>o.affiliateHost===host);
+    if(!approved || !config.approvedAffiliateHosts.includes(host)) errors.push(`Unapproved affiliate host on ${p}: ${host||href}`);
+    else if(!validAffiliateUrl(href.replace(/&amp;/g,"&"),host,approved.affiliateReferral)) errors.push(`Invalid affiliate attribution on ${p}: ${href}`);
     if(!/\brel=["'][^"']*\bsponsored\b/i.test(tag)) errors.push(`Affiliate link missing rel=sponsored: ${p} -> ${href}`);
     if(!/\bdata-affiliate=/i.test(tag)) errors.push(`Affiliate link missing data-affiliate tracking label: ${p} -> ${href}`);
   }
@@ -129,12 +134,13 @@ else{
   }
 }
 
-const promoNeedle="BFCM2026";
-const promoExpiry=Date.parse("2026-11-30T04:59:00Z");
-if(Date.now()>promoExpiry){
+for(const opportunity of config.opportunities){
+  const offer=opportunity.currentOffer;
+  if(offer?.active && (!offer.code || !Number.isFinite(Date.parse(offer.expiresAt||"")))) errors.push(`Missing explicit promotion code/expiry: ${opportunity.name}`);
+  if(!offer?.code || isPromoActive(offer)) continue;
   for(const f of htmlFiles){
     const p=rel(f), html=read(f);
-    if(html.includes(promoNeedle)) errors.push(`Expired promotion still published: ${p} contains ${promoNeedle}`);
+    if(html.includes(offer.code)) errors.push(`Expired promotion still published: ${p} contains ${offer.code}`);
   }
 }
 
