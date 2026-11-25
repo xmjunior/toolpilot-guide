@@ -1,0 +1,99 @@
+{
+  "asOf": "2026-11-25",
+  "approvedAffiliateHosts": [
+    "beehiiv.com"
+  ],
+  "opportunities": [
+    {
+      "key": "beehiiv",
+      "name": "beehiiv",
+      "affiliateStatus": "active",
+      "affiliateHost": "beehiiv.com",
+      "commissionPercent": 50,
+      "recurringMonths": 12,
+      "marketReviewCount": null,
+      "searchDemandEstimate": 69080,
+      "searchDemandSource": "vidIQ YouTube keyword estimate for beehiiv; not Google search volume",
+      "currentOffer": {
+        "active": true,
+        "end": "2026-11-29",
+        "note": "20% off first year annual plan with BFCM2026; does not stack with other discounts"
+      },
+      "searchAdsAllowed": false,
+      "userSetupRequired": false,
+      "note": "Only currently confirmed ToolPilot affiliate; prioritize existing buyer-intent pages and distribution."
+    },
+    {
+      "key": "activecampaign",
+      "name": "ActiveCampaign",
+      "affiliateStatus": "not_active",
+      "affiliateHost": null,
+      "commissionPercent": 30,
+      "recurringMonths": 12,
+      "marketReviewCount": 14886,
+      "searchDemandEstimate": null,
+      "currentOffer": {
+        "active": false,
+        "end": null,
+        "note": ""
+      },
+      "searchAdsAllowed": null,
+      "userSetupRequired": true,
+      "note": "Strong G2 market signal and existing ToolPilot pages, but no active ToolPilot affiliate link."
+    },
+    {
+      "key": "getresponse",
+      "name": "GetResponse",
+      "affiliateStatus": "not_active",
+      "affiliateHost": null,
+      "commissionPercent": 33,
+      "recurringMonths": null,
+      "marketReviewCount": null,
+      "searchDemandEstimate": null,
+      "currentOffer": {
+        "active": false,
+        "end": null,
+        "note": ""
+      },
+      "searchAdsAllowed": null,
+      "userSetupRequired": true,
+      "note": "Official affiliate program exists; ToolPilot is not currently approved/active."
+    },
+    {
+      "key": "mailerlite",
+      "name": "MailerLite",
+      "affiliateStatus": "not_active",
+      "affiliateHost": null,
+      "commissionPercent": 30,
+      "recurringMonths": null,
+      "marketReviewCount": null,
+      "searchDemandEstimate": null,
+      "currentOffer": {
+        "active": false,
+        "end": null,
+        "note": ""
+      },
+      "searchAdsAllowed": null,
+      "userSetupRequired": true,
+      "note": "Existing newsletter pages, but no active ToolPilot affiliate link."
+    },
+    {
+      "key": "shopify",
+      "name": "Shopify",
+      "affiliateStatus": "not_active",
+      "affiliateHost": null,
+      "commissionPercent": null,
+      "recurringMonths": null,
+      "marketReviewCount": 5176,
+      "searchDemandEstimate": null,
+      "currentOffer": {
+        "active": false,
+        "end": null,
+        "note": ""
+      },
+      "searchAdsAllowed": null,
+      "userSetupRequired": true,
+      "note": "Large market and existing ecommerce pages; no active ToolPilot affiliate approval."
+    }
+  ]
+}
