@@ -60,3 +60,10 @@ The sitemap and IndexNow submission aid discovery, not guaranteed indexing. Sear
 - Gmail check found no replies or bounce notices matching the earlier ToolPilot pitches. Metricool still returned zero recorded views, visits and visitors; consent limits still apply.
 - Corrected the English and Spanish home FAQ to describe existing optional Metricool analytics accurately. No consent or tracking behavior changed.
 - Added a lightweight SVG favicon using the existing black/gold branding; linked it on 22 HTML pages. HTML links and SVG XML validation passed.
+
+## Short-form/video truth state — November 25, 2026
+
+- The files `marketing/black-friday/2026-11-11-reels.md` and `2026-11-11-reels-02.md` are **scripts/copy packs only**. They are not proof that any Reel, TikTok or Short was rendered or published.
+- vidIQ currently reports **no connected ToolPilot social account with publishing access**. Therefore no ToolPilot social video should be counted as published unless a public platform URL is explicitly recorded here.
+- Going forward, statuses are strict: `draft` → `rendered` → `scheduled` → `published`. Only `published` with a public URL counts as distribution.
+- Do not report “videos made this week” from script files, content calendars or generated assets alone.
