@@ -68,7 +68,14 @@ function alternatives(k){
  out(`alternatives/${k}-alternatives.html`,shell(title,`Compare current ${p.name} alternatives by cost and business fit.`,canonical,body));
 }
 
-const keys=Object.keys(platforms);
-for(let i=0;i<keys.length;i++) for(let j=i+1;j<keys.length;j++) compare(keys[i],keys[j]);
-for(const k of keys){ pricing(k); alternatives(k); }
-console.log(`Money engine complete. created=${created} updated=${updated} skipped_curated=${skipped}. Use --overwrite-curated only after explicit review.`);
+const generation=data.generate||{};
+const pairs=Array.isArray(generation.comparisons)?generation.comparisons:[];
+const pricingKeys=Array.isArray(generation.pricing)?generation.pricing:[];
+const alternativeKeys=Array.isArray(generation.alternatives)?generation.alternatives:[];
+for(const pair of pairs){
+  if(!Array.isArray(pair)||pair.length!==2||!platforms[pair[0]]||!platforms[pair[1]]) throw new Error("Invalid comparison pair in data.generate");
+  compare(pair[0],pair[1]);
+}
+for(const k of pricingKeys){ if(!platforms[k]) throw new Error(`Unknown pricing platform: ${k}`); pricing(k); }
+for(const k of alternativeKeys){ if(!platforms[k]) throw new Error(`Unknown alternatives platform: ${k}`); alternatives(k); }
+console.log(`Money engine complete. created=${created} updated=${updated} skipped_curated=${skipped}. Generated only explicitly approved entries from data.generate. Use --overwrite-curated only after explicit review.`);
