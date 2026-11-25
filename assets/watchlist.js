@@ -2,6 +2,7 @@
 (function(){
   "use strict";
   const leadEndpoint="https://rjgpwcmfgdkmlplifwck.supabase.co/functions/v1/toolpilot-lead-capture";
+  const isEs=(document.documentElement.lang||"en").toLowerCase().startsWith("es");
   const eventEndpoint="https://rjgpwcmfgdkmlplifwck.supabase.co/functions/v1/toolpilot-event";
 
   function source(){
@@ -17,7 +18,7 @@
     const status=form.querySelector("[data-status]");
     form.addEventListener("submit",async function(e){
       e.preventDefault();
-      if(status) status.textContent="Saving…";
+      if(status) status.textContent=isEs?"Guardando…":"Saving…";
       const email=form.querySelector('input[type="email"]');
       const consent=form.querySelector('input[name="consent"]');
       const company=form.querySelector('input[name="company"]');
@@ -37,7 +38,7 @@
         });
         const result=await response.json();
         if(!response.ok||!result.ok) throw new Error("capture_failed");
-        if(status) status.textContent="You're on the watchlist. We'll send only ToolPilot deal and buying-guide updates.";
+        if(status) status.textContent=isEs?"Ya estás en la lista. Solo enviaremos novedades de ToolPilot sobre ofertas y guías.":"You're on the watchlist. We'll send only ToolPilot deal and buying-guide updates.";
         form.reset();
         fetch(eventEndpoint,{
           method:"POST",
@@ -51,7 +52,7 @@
           keepalive:true
         }).catch(()=>{});
       }catch(_){
-        if(status) status.textContent="We could not save your email. Please try again later; all free tools remain available without signup.";
+        if(status) status.textContent=isEs?"No hemos podido guardar el correo. Inténtalo más tarde; las herramientas siguen disponibles sin registro.":"We could not save your email. Please try again later; all free tools remain available without signup.";
       }
     });
   });
