@@ -33,7 +33,7 @@ Search caches showed older beehiiv plan names and rates. The live official selec
 
 The existing ToolPilot-only Metricool connection returned zero recorded views/visits/visitors for November 8 at the pre-release check. Analytics requires visitor opt-in; this is not proof of zero actual visits. Referral sources and pages are available, but calculator interaction events and affiliate conversions were not verified. Do not invent them.
 
-The sitemap and IndexNow submission aid discovery, not guaranteed indexing. Search Console ownership/index status has not been verified. Do not buy traffic, create social accounts, send bulk outreach or alter other projects.
+At the November 8 pre-release check, Search Console ownership/index status had not yet been verified. **Current correction (November 25): Google Search Console ownership is verified and the sitemap has been submitted/read.** Sitemap and IndexNow still aid discovery rather than guaranteeing ranking or indexing. Do not treat the historical November 8 note as the current state.
 
 ## Additional distribution on November 8
 
