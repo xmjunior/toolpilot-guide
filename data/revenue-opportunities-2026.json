@@ -17,14 +17,20 @@
       "currentOffer": {
         "active": true,
         "end": "2026-11-29",
-        "note": "20% off first year annual plan with BFCM2026; does not stack with other discounts"
+        "note": "20% off first year annual plan with BFCM2026; does not stack with other discounts",
+        "expiresAt": "2026-11-30T04:59:59Z",
+        "code": "BFCM2026"
       },
       "searchAdsAllowed": false,
       "userSetupRequired": false,
       "note": "Only currently confirmed ToolPilot affiliate; prioritize existing buyer-intent pages and distribution.",
       "payoutSetupVerified": false,
       "payoutSetupStatus": "unknown",
-      "payoutNote": "No connected evidence currently confirms Dub/Stripe payout setup. This does not block referral tracking, but payout readiness is not certified."
+      "payoutNote": "No connected evidence currently confirms Dub/Stripe payout setup. This does not block referral tracking, but payout readiness is not certified.",
+      "affiliateReferral": {
+        "param": "via",
+        "value": "mario-belmonte"
+      }
     },
     {
       "key": "activecampaign",
