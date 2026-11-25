@@ -31,6 +31,12 @@ No passwords, invoices or sensitive data are required. No savings are guaranteed
 - [Newsletter platform cost calculator](https://toolpilot-guide.onrender.com/tools/newsletter-platform-cost-calculator.html?utm_source=github&utm_medium=referral&utm_campaign=toolpilot)
 - [Black Friday SaaS cost checker](https://toolpilot-guide.onrender.com/black-friday/saas-cost-calculator.html?utm_source=github&utm_medium=referral&utm_campaign=bf2026)
 
+## High-intent software buying guides
+
+- [beehiiv pricing 2026](https://toolpilot-guide.onrender.com/pricing/beehiiv-pricing-2026.html?utm_source=github&utm_medium=referral&utm_campaign=beehiiv_pricing)
+- [beehiiv vs Substack](https://toolpilot-guide.onrender.com/guides/beehiiv-vs-substack.html?utm_source=github&utm_medium=referral&utm_campaign=beehiiv_vs_substack)
+- [beehiiv alternatives](https://toolpilot-guide.onrender.com/alternatives/beehiiv-alternatives.html?utm_source=github&utm_medium=referral&utm_campaign=beehiiv_alternatives)
+
 ## Buying decision centers
 
 - [Newsletter platforms](https://toolpilot-guide.onrender.com/newsletter-platforms.html?utm_source=github&utm_medium=referral&utm_campaign=toolpilot)
