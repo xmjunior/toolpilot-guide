@@ -1,9 +1,11 @@
+> **STATUS: LEGACY REFERENCE — DO NOT EXECUTE AS A CURRENT CAMPAIGN.** As of November 25, 2026, ToolPilot's active goal is the first affiliate commission through high-intent SEO and the existing beehiiv partner relationship. Do not use Mario's personal LinkedIn, do not create social accounts that require Mario's setup time, do not send bulk outreach, and do not buy traffic without explicit approval. Current click measurement is first-party Supabase tracking; confirmed conversion/commission truth comes from the vendor partner dashboard/payout evidence.
+
 # ToolPilot Guide — Distribution Kit (November 2026)
 
 Business: ToolPilot Guide, independent comparison and free browser calculator.
 Primary URL: https://toolpilot-guide.onrender.com/es/herramientas/calculadora-newsletter.html
 English site: https://toolpilot-guide.onrender.com/
-Revenue path: disclosed beehiiv affiliate link inside the guide/site. Never claim confirmed conversions without Dub reports.
+Historical revenue path: disclosed beehiiv affiliate link inside the guide/site. Never claim confirmed conversions or commissions without vendor partner-dashboard/payout evidence.
 
 ## Campaign angle: Free calculator, no signup
 
@@ -61,7 +63,7 @@ Show the four inputs, change conversion rate, explain that the result is illustr
 CTA: “Free calculator, no signup, in the link.”
 URL: https://toolpilot-guide.onrender.com/tools/newsletter-break-even-calculator.html?utm_source=youtube&utm_medium=shorts&utm_campaign=calculator_launch
 
-## LinkedIn post — Spanish
+## ARCHIVED — LinkedIn post — DO NOT PUBLISH FROM MARIO'S PERSONAL PROFILE
 
 “Una newsletter no es rentable solo por acumular suscriptores. Hay que comparar costes, conversión y margen real.
 
@@ -78,12 +80,12 @@ No pide registro y no promete ingresos; es una herramienta para planificar. ¿Qu
 - No posting without an authorized connected account.
 - No fake testimonials, fabricated customers, purchased followers or automated upvote services.
 - Avoid Google/Bing paid search advertising to beehiiv affiliate links: disallowed by partner program.
-- Measure what matters: real visitors -> affiliate clicks (Dub) -> trial/lead -> paid conversion -> paid commission.
+- Measure what matters: real visitors -> first-party affiliate clicks -> vendor-confirmed signup/purchase -> paid commission.
 - UTM tags in URLs are NOT analytics by themselves; Google Search Console or privacy-aware analytics must be set up to see incoming visits.
 
 ## Practical next verification
 
 1. Confirm a listing is accepted, NOT merely submitted.
 2. Confirm channel post is public and its URL works.
-3. Track real landing visits with analytics, Dub partner visitor counts and sales after meaningful traffic.
+3. Track real landing visits with first-party events and confirm signups/sales only from the vendor partner dashboard after meaningful traffic.
 4. Retire tactics that bring no relevant users; do not multiply pages or posts blindly.
