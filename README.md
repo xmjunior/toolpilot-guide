@@ -1,5 +1,7 @@
 # ToolPilot Guide — Free SaaS Decision Tools + Buying Guides
 
+**Best Newsletter Platforms 2026:** https://toolpilot-guide.onrender.com/newsletter-platforms.html?utm_source=github&utm_medium=referral&utm_campaign=newsletter_money_pages  
+**beehiiv Black Friday 2026 — verified deal:** https://toolpilot-guide.onrender.com/black-friday/verified-saas-deals-2026.html?utm_source=github&utm_medium=referral&utm_campaign=bf2026  
 **Free SaaS Stack Cost Audit:** https://toolpilot-guide.onrender.com/tools/saas-stack-cost-audit.html?utm_source=github&utm_medium=referral&utm_campaign=saas_audit  
 **Free SaaS Savings Review:** https://toolpilot-guide.onrender.com/free-saas-savings-review.html?utm_source=github&utm_medium=referral&utm_campaign=free_review  
 **All free tools:** https://toolpilot-guide.onrender.com/free-tools.html?utm_source=github&utm_medium=referral&utm_campaign=toolpilot  
