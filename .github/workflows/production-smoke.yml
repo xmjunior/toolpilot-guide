@@ -96,8 +96,16 @@ jobs:
           grep -q 'Best newsletter platforms in 2026' /tmp/newsletter.html
           grep -q 'via=mario-belmonte' /tmp/newsletter.html
           grep -q 'Best newsletter platforms for making money in 2026' /tmp/money.html
-          grep -q 'BFCM2026' /tmp/beehiiv.html
-          grep -q 'BFCM2026' /tmp/bf.html
+          # A live offer must be present before expiry, absent after expiry.
+          if node --input-type=module -e 'import fs from "node:fs"; import {isPromoActive} from "./scripts/revenue-rules.mjs"; const b=JSON.parse(fs.readFileSync("data/revenue-opportunities-2026.json","utf8")).opportunities.find(x=>x.key==="beehiiv"); process.exit(isPromoActive(b.currentOffer)?0:1)'; then
+            grep -q 'BFCM2026' /tmp/beehiiv.html
+            grep -q 'BFCM2026' /tmp/bf.html
+          else
+            if grep -q 'BFCM2026' /tmp/beehiiv.html /tmp/bf.html; then
+              echo "FAIL: expired beehiiv code is still live"
+              exit 1
+            fi
+          fi
           grep -q 'newsletter-platforms.html' /tmp/sitemap.xml
           grep -q '"ok":true' /tmp/event.json
           grep -q '"service":"toolpilot-event"' /tmp/event.json
