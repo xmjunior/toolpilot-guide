@@ -1,4 +1,4 @@
-name: ToolPilot production smoke
+name: ToolPilot integrity + production smoke
 
 on:
   push:
@@ -9,43 +9,80 @@ permissions:
   contents: read
 
 jobs:
-  production-smoke:
+  integrity-and-production:
     runs-on: ubuntu-latest
-    timeout-minutes: 6
+    timeout-minutes: 8
     steps:
-      - name: Wait for Render static deploy
-        if: github.event_name == 'push'
-        run: sleep 75
+      - uses: actions/checkout@v4
 
-      - name: Verify public revenue funnel
+      - name: Run calculator tests
+        run: node --test tests/*.test.cjs
+
+      - name: Validate site integrity and commercial rules
+        run: node scripts/validate-site.mjs
+
+      - name: Wait until Render is serving this commit
+        if: github.event_name == 'push'
         shell: bash
         run: |
           set -euo pipefail
           BASE="https://toolpilot-guide.onrender.com"
-          CAMPAIGN="$BASE/go/black-friday-saas-deal-checker-2026.html"
+          paths=(
+            "index.html"
+            "newsletter-platforms.html"
+            "newsletter/best-newsletter-platform-for-monetization.html"
+            "pricing/beehiiv-pricing-2026.html"
+            "black-friday/verified-saas-deals-2026.html"
+            "sitemap.xml"
+          )
+          for attempt in $(seq 1 24); do
+            stale=0
+            for path in "${paths[@]}"; do
+              url="$BASE/$path"
+              [ "$path" = "index.html" ] && url="$BASE/"
+              tmp="/tmp/live-${path//\//_}"
+              if ! curl -fsSL --retry 2 --connect-timeout 10 --max-time 25 "$url" -o "$tmp"; then
+                stale=1
+                break
+              fi
+              if ! cmp -s "$path" "$tmp"; then
+                stale=1
+                break
+              fi
+            done
+            if [ "$stale" -eq 0 ]; then
+              echo "PASS: Render is serving the exact critical files from this commit."
+              exit 0
+            fi
+            echo "Render is still stale (attempt $attempt/24)."
+            sleep 15
+          done
+          echo "FAIL: Render never matched this commit. Do not accept a stale-production PASS."
+          exit 1
 
+      - name: Verify live revenue path and tracking endpoints
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE="https://toolpilot-guide.onrender.com"
           fetch() {
             local url="$1" out="$2"
-            curl -fsSL --retry 3 --retry-delay 5 --connect-timeout 15 --max-time 30 "$url" -o "$out"
+            curl -fsSL --retry 3 --retry-delay 3 --connect-timeout 15 --max-time 30 "$url" -o "$out"
           }
 
-          fetch "$CAMPAIGN" /tmp/campaign.html
-          fetch "$BASE/black-friday/saas-cost-calculator.html" /tmp/bf.html
-          fetch "$BASE/guides/best-free-newsletter-platforms-2026.html" /tmp/free.html
+          fetch "$BASE/newsletter-platforms.html" /tmp/newsletter.html
+          fetch "$BASE/newsletter/best-newsletter-platform-for-monetization.html" /tmp/money.html
+          fetch "$BASE/pricing/beehiiv-pricing-2026.html" /tmp/beehiiv.html
+          fetch "$BASE/black-friday/verified-saas-deals-2026.html" /tmp/bf.html
           fetch "$BASE/sitemap.xml" /tmp/sitemap.xml
           fetch "https://rjgpwcmfgdkmlplifwck.supabase.co/functions/v1/toolpilot-event" /tmp/event.json
-          fetch "https://rjgpwcmfgdkmlplifwck.supabase.co/functions/v1/toolpilot-lead-capture" /tmp/lead.json
 
-          grep -q 'Should you actually buy that SaaS Black Friday deal?' /tmp/campaign.html
-          grep -q 'bf-deal-checker-watchlist' /tmp/campaign.html
-          grep -q 'toolpilot-lead-capture' /tmp/campaign.html
-          grep -q 'affiliate_click' /tmp/campaign.html
-          grep -q 'page_view' /tmp/campaign.html
-          grep -q 'via=mario-belmonte' /tmp/campaign.html
-          grep -q 'Get the verified deal watchlist' /tmp/bf.html
-          grep -q 'beehiiv vs Sender vs Substack' /tmp/free.html
-          grep -q '/black-friday/saas-cost-calculator.html' /tmp/sitemap.xml
+          grep -q 'Best newsletter platforms in 2026' /tmp/newsletter.html
+          grep -q 'via=mario-belmonte' /tmp/newsletter.html
+          grep -q 'Best newsletter platforms for making money in 2026' /tmp/money.html
+          grep -q 'BFCM2026' /tmp/beehiiv.html
+          grep -q 'BFCM2026' /tmp/bf.html
+          grep -q 'newsletter-platforms.html' /tmp/sitemap.xml
           grep -q '"version":"2"' /tmp/event.json
-          grep -q '"service":"toolpilot-lead-capture"' /tmp/lead.json
 
-          echo "PASS: ToolPilot campaign, lead capture and affiliate tracking are publicly reachable."
+          echo "PASS: live buyer-intent pages, beehiiv monetization and tracking are reachable."
