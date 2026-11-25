@@ -1,0 +1,39 @@
+{
+  "critical": [
+    {
+      "path": "newsletter-platforms.html",
+      "minInbound": 4,
+      "maxDepth": 1
+    },
+    {
+      "path": "pricing/beehiiv-pricing-2026.html",
+      "minInbound": 4,
+      "maxDepth": 2
+    },
+    {
+      "path": "guides/beehiiv-newsletter.html",
+      "minInbound": 4,
+      "maxDepth": 1
+    },
+    {
+      "path": "newsletter/best-newsletter-platform-for-monetization.html",
+      "minInbound": 3,
+      "maxDepth": 2
+    },
+    {
+      "path": "guides/beehiiv-vs-substack.html",
+      "minInbound": 3,
+      "maxDepth": 2
+    },
+    {
+      "path": "compare/beehiiv-vs-kit.html",
+      "minInbound": 3,
+      "maxDepth": 2
+    },
+    {
+      "path": "alternatives/beehiiv-alternatives.html",
+      "minInbound": 3,
+      "maxDepth": 2
+    }
+  ]
+}
