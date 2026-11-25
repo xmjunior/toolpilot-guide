@@ -6,5 +6,6 @@ Disallow: /es/
 Disallow: /embed/
 Disallow: /black-friday/
 Disallow: /privacy-2026.html
+Disallow: /index.html
 
 Sitemap: https://toolpilot-guide.onrender.com/sitemap.xml
