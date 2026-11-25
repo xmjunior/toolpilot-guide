@@ -1,5 +1,5 @@
 {
-  "reviewed": "2026-11-24",
+  "reviewed": "2026-11-25",
   "sources": {
     "beehiiv": [
       "https://www.beehiiv.com/pricing",
@@ -13,6 +13,13 @@
       "https://www.mailerlite.com/pricing",
       "https://www.mailerlite.com/help/plan-and-billing",
       "https://www.mailerlite.com/help/guide-to-affiliate-payouts-and-commissions"
+    ],
+    "substack": [
+      "https://support.substack.com/hc/en-us/articles/360037607131-How-much-does-Substack-cost",
+      "https://substack.com/pricing"
+    ],
+    "ghost": [
+      "https://ghost.org/pricing/"
     ]
   },
   "platforms": {
@@ -39,6 +46,48 @@
       "strength": "Best when low starting cost and general email-marketing functionality matter more than publisher-specific monetization.",
       "official": "https://www.mailerlite.com/pricing",
       "affiliate": null
+    },
+    "substack": {
+      "name": "Substack",
+      "free": "$0 monthly · no subscriber cap for publishing",
+      "paid": "No monthly platform fee; Substack keeps 10% of paid subscription revenue plus Stripe processing fees",
+      "strength": "Best when built-in discovery and zero monthly software cost matter more than owning the full stack.",
+      "official": "https://substack.com/pricing",
+      "affiliate": null
+    },
+    "ghost": {
+      "name": "Ghost",
+      "free": "No free managed Ghost(Pro) plan · open-source self-hosting is available",
+      "paid": "Starter $18/mo billed yearly; Publisher $29/mo billed yearly at 1,000 members for paid subscriptions",
+      "strength": "Best when publication ownership, a custom site and 0% platform payment fees matter most.",
+      "official": "https://ghost.org/pricing/",
+      "affiliate": null
     }
+  },
+  "generate": {
+    "comparisons": [
+      [
+        "beehiiv",
+        "kit"
+      ],
+      [
+        "beehiiv",
+        "mailerlite"
+      ],
+      [
+        "kit",
+        "mailerlite"
+      ]
+    ],
+    "pricing": [
+      "beehiiv",
+      "kit",
+      "mailerlite"
+    ],
+    "alternatives": [
+      "beehiiv",
+      "kit",
+      "mailerlite"
+    ]
   }
 }
