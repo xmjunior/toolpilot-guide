@@ -34,6 +34,9 @@ jobs:
       - name: Audit internal link equity to money pages
         run: node scripts/link-equity-audit.mjs
 
+      - name: Audit zero-credit SEO structure
+        run: node scripts/seo-structure-audit.mjs
+
       - name: Wait until Render is serving this commit
         if: github.event_name == 'push'
         shell: bash
