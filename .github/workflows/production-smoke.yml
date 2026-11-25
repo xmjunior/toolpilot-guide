@@ -28,6 +28,9 @@ jobs:
           node scripts/generate-money-pages.mjs
           git diff --exit-code
 
+      - name: Enforce revenue-first priority rules
+        run: node scripts/revenue-priority.mjs --check
+
       - name: Wait until Render is serving this commit
         if: github.event_name == 'push'
         shell: bash
