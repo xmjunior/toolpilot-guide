@@ -1,0 +1,20 @@
+ToolPilot Guide — Free Software Buyer Checklist
+https://toolpilot-guide.onrender.com/free-tools.html
+Use this checklist before purchasing or renewing any business software.
+
+[ ] Define the job and the measurable result the tool must deliver.
+[ ] Check the free plan, usage limits and at least two alternatives.
+[ ] Calculate total first-year cost, including seats, add-ons, taxes and setup.
+[ ] Check renewal price, billing period, cancellation and refund conditions.
+[ ] Identify duplicate subscriptions and unused seats.
+[ ] Verify data export, integration and migration costs.
+[ ] Test the core workflow with non-sensitive sample data.
+[ ] Set a calendar reminder before trial or renewal.
+[ ] Decide: buy, trial, keep, downgrade or cancel.
+
+Budget tracker columns:
+Tool | Purpose | Seats | Monthly cost | Annual cost | Renewal date | Last used | Decision
+Compare totals for the same currency and billing period. Do not assume promotional prices recur.
+
+Free calculators: https://toolpilot-guide.onrender.com/free-tools.html
+No subscription, payment or email required to access this checklist.
