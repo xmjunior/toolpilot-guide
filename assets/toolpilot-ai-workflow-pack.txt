@@ -1,0 +1,59 @@
+TOOLPILOT GUIDE — AI & SOFTWARE WORKFLOW PACK
+12 copy-ready templates | Version 2026-11-26
+https://toolpilot-guide.onrender.com/free-tools.html
+Use with your preferred AI assistant. Replace bracketed placeholders with your own context. Remove confidential or personal data before pasting anything. These are original prompt templates, not guaranteed results or independently benchmarked workflows. Always check outputs.
+
+1. AUDIT RECURRING SOFTWARE COSTS
+I am auditing subscriptions for [business type]. Use this redacted table of tools, seats, monthly costs, usage and renewal dates: [table]. Calculate annual costs in one currency, identify overlapping functions and low-use subscriptions, and rank review opportunities. Distinguish observed costs from possible savings. Flag missing data; do not recommend cancellation until dependencies, contracts and data export are checked.
+VERIFY: Reconcile the totals with your invoices.
+
+2. COMPARE TWO SOFTWARE PRODUCTS
+Compare [product A] and [product B] for [specific workflow], [team size], [budget] and [must-have features]. Ask me for missing requirements. Produce a comparison table with current-source URLs if web access is available, total first-year cost, renewal price, restrictions, migration risks and a test plan. Mark any facts you cannot verify.
+VERIFY: Check each vendor's current pricing and terms.
+
+3. CHOOSE A FREE ALTERNATIVE
+For [task], list up to five software alternatives that may meet [requirements] within [budget]. Separate free plans from trials, open-source software and paid products. Identify limits, hosting or usage charges, data export and privacy considerations. If you cannot verify current conditions, label them unverified.
+VERIFY: Try the core task using sample data.
+
+4. EVALUATE A LIFETIME DEAL
+Analyze a software offer with [one-time price], [limits], [expected monthly usage], [subscription alternative price], [expected months of use], and [upgrade/add-on costs]. Show break-even months under three usage scenarios and risks if the vendor changes or closes. Do not assume lifetime means guaranteed indefinite service.
+VERIFY: Verify the offer's contract, tier and refund window.
+
+5. CREATE A REPEATABLE AI WORKFLOW
+Turn this recurring task into a repeatable workflow: [task]. Inputs: [inputs]. Output: [deliverable]. Constraints: [privacy, quality, time]. Give a step-by-step SOP, copyable assistant instructions, a review checklist, failure conditions, and an example using fictional data. Do not invent access to tools.
+VERIFY: Run the example and inspect each step before using real data.
+
+6. SUMMARIZE A BUSINESS DOCUMENT
+Using only the document text pasted below, return a five-sentence executive summary, decisions, obligations, open questions and a source quote or section reference for each. Do not fill gaps or invent facts. Mark anything uncertain. Document: [redacted text].
+VERIFY: Compare every important statement to the original.
+
+7. DRAFT A USEFUL CUSTOMER RESPONSE
+Write a concise response to this customer query: [redacted message]. Use only these verified product details: [details]. Tone: [tone]. Offer one actionable next step. Do not invent guarantees, discounts or commitments. Flag anything needing a human decision.
+VERIFY: Check the product terms and approve before sending.
+
+8. BUILD A CONTENT TEST
+For [audience] with [real problem], create three distinct short-video concepts. Each needs a truthful first-two-second hook, a visible demonstration or example, one takeaway and one CTA. Include exact text and a source-check list. Avoid false scarcity, fake results or repetitive scripts.
+VERIFY: Measure retention and qualified actions for each version.
+
+9. EVALUATE NEWSLETTER ECONOMICS
+Model a newsletter with [audience size], [assumed conversion], [monthly paid price], [variable fees] and [fixed monthly costs]. Calculate break-even paying readers and conservative/base/optimistic outcomes, label all assumptions and explain the largest uncertainties. Do not forecast guaranteed income.
+VERIFY: Check assumptions against your own analytics.
+
+10. PLAN A SOFTWARE MIGRATION
+Make a migration checklist from [old tool] to [new tool]. Include current dependencies, permissions, backup, exports, test environment, data reconciliation, rollback and validation. Ask for missing information; never propose deleting production data without a confirmed recovery plan.
+VERIFY: Test with a copy and verify rollback.
+
+11. ANALYZE MARKETING WITHOUT VANITY METRICS
+Using this aggregate campaign table [impressions, visits, opt-ins, purchases, attributable revenue, spend], calculate click-through rate, cost per lead, cost per acquisition and contribution before fixed costs. Treat missing denominators as unavailable. Identify the funnel's biggest measured loss and propose one controlled test.
+VERIFY: Reconcile paid sales and attributed revenue with platform reports.
+
+12. CREATE A DECISION MEMO
+Prepare a one-page decision memo about [business decision] using [verified inputs]. Separate facts, assumptions, options, costs, expected benefits, risks and next test. Recommend a reversible experiment with explicit success and stop criteria. State what evidence could change the recommendation.
+VERIFY: Have the decision-maker check facts and constraints.
+
+FOUR QUICK START WORKFLOWS
+1. Cut waste: fill the subscription tracker -> run prompt 1 -> validate invoices -> decide.
+2. Buy smarter: use prompts 2, 3 and 4 -> test with sample data -> compare total cost.
+3. Save time: choose one repeated task -> use prompt 5 -> test -> review before automating.
+4. Grow responsibly: plan content with prompt 8 -> measure actual results with prompt 11 -> decide with prompt 12.
+Free for personal and business use. No payment or signup required. Follow @toolpilotguide for new tutorials and deal checks.
