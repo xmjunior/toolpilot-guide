@@ -1,0 +1,76 @@
+name: One-time ToolPilot directory submission
+on:
+  push:
+    branches: [distribution/techtools-20261126]
+    paths: ['.github/workflows/toolpilot-techtools-20261126.yml']
+permissions:
+  contents: read
+  statuses: write
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Verify site, check duplicates and submit once
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import os, json, urllib.request, urllib.parse, urllib.error, subprocess
+          site = "https://toolpilot-guide.onrender.com/"
+          base = "https://techtools.cz/launchpad-api"
+          def request(url, body=None):
+              data = None if body is None else json.dumps(body).encode()
+              req = urllib.request.Request(url, data=data, headers={"User-Agent":"ToolPilotGuide-DirectorySubmission/1.0", "Accept":"application/json" if url.startswith(base) else "text/html", "Content-Type":"application/json"})
+              try:
+                  with urllib.request.urlopen(req, timeout=25) as r:
+                      return r.status, r.read(2000000)
+              except urllib.error.HTTPError as e:
+                  return e.code, e.read(100000)
+          def record(state, desc, link=""):
+              print(state, desc, link)
+              args=["gh","api","--method","POST","repos/"+os.environ["GITHUB_REPOSITORY"]+"/statuses/"+os.environ["GITHUB_SHA"],"-f","state="+state,"-f","context=distribution/techtools","-f","description="+desc]
+              if link: args += ["-f","target_url="+link]
+              subprocess.run(args, stdout=subprocess.DEVNULL, check=False)
+          try:
+              code, html = request(site)
+              if code != 200 or b"ToolPilot Guide" not in html:
+                  raise RuntimeError("Homepage verification failed (HTTP "+str(code)+")")
+              lookup = base+"/tools?"+urllib.parse.urlencode({"url":site})
+              code, raw = request(lookup)
+              result = json.loads(raw)
+              if code != 200 or not result.get("success"):
+                  raise RuntimeError("Duplicate check failed (HTTP "+str(code)+")")
+              existing = result.get("data", [])
+              if existing:
+                  item = existing[0]
+                  outcome = "Existing listing verified"
+              else:
+                  if result.get("meta",{}).get("total") != 0:
+                      raise RuntimeError("Unexpected duplicate-check response")
+                  code, raw = request(base+"/tools", {"name":"ToolPilot Guide","url":site,"tagline":"Free SaaS cost calculators and independent software buying guides.","description":"Compare software pricing, renewal costs, alternatives and migration risks before buying. Free browser-based calculators cover SaaS total cost, newsletter break-even and platform fees. English and Spanish resources with clearly disclosed affiliate links.","category":"business","submitted_by":"ToolPilot Guide AI assistant"})
+                  result = json.loads(raw)
+                  if code == 201 and result.get("success"):
+                      item = result["data"]
+                      outcome = "New listing published"
+                  elif code == 409 and result.get("existing"):
+                      item = result["existing"]
+                      outcome = "Existing listing verified"
+                  else:
+                      raise RuntimeError("Submission failed (HTTP "+str(code)+")")
+              ident = int(item["id"])
+              public = base+"/tools/"+str(ident)
+              code, raw = request(public)
+              check = json.loads(raw)
+              if code != 200 or not check.get("success") or check.get("data",{}).get("url","").rstrip("/") != site.rstrip("/"):
+                  raise RuntimeError("Public listing verification failed")
+              link = result.get("share_url") or item.get("share_url") or public
+              link = urllib.parse.urljoin("https://techtools.cz/",link)
+              if urllib.parse.urlsplit(link).hostname != "techtools.cz" or "manage" in link.lower():
+                  link = public
+              record("success",outcome+"; ID "+str(ident),link)
+              print("Public API:",public)
+          except Exception as e:
+              record("failure",str(e)[:125])
+              raise SystemExit(1)
+          PY
