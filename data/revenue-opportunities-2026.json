@@ -1,9 +1,33 @@
 {
-  "asOf": "2026-11-25",
+  "asOf": "2026-11-27",
   "approvedAffiliateHosts": [
-    "beehiiv.com"
+    "beehiiv.com",
+    "appsumo.8odi.net"
   ],
   "opportunities": [
+    {
+      "key": "appsumo",
+      "name": "AppSumo",
+      "affiliateStatus": "active",
+      "affiliateHost": "appsumo.8odi.net",
+      "affiliateUrl": "https://appsumo.8odi.net/m4MD3X",
+      "commissionPercent": 100,
+      "commissionCapUsd": 50,
+      "recurringMonths": null,
+      "marketReviewCount": null,
+      "searchDemandEstimate": null,
+      "currentOffer": {
+        "active": true,
+        "end": "2026-12-01",
+        "note": "10% off eligible Black Friday deals until noon Central Time; historical listed prices must be rechecked at checkout."
+      },
+      "searchAdsAllowed": false,
+      "userSetupRequired": true,
+      "note": "Approved in owner-provided Impact dashboard. Owner-generated link verified redirecting to AppSumo with matching publisher attribution. New qualifying buyers only, cap $50; returning buyers depend on contract. No sale or confirmed commission.",
+      "payoutSetupVerified": false,
+      "payoutSetupStatus": "tax_document_pending",
+      "payoutNote": "Impact requests electronic W-8. Owner must verify tax classification, sign personally, and confirm bank/payment setup. No payout readiness claim."
+    },
     {
       "key": "beehiiv",
       "name": "beehiiv",
@@ -21,7 +45,7 @@
       },
       "searchAdsAllowed": false,
       "userSetupRequired": false,
-      "note": "Only currently confirmed ToolPilot affiliate; prioritize existing buyer-intent pages and distribution.",
+      "note": "Existing ToolPilot affiliate identifier; prioritize verified buyer-intent content. Payout status is not verified.",
       "payoutSetupVerified": false,
       "payoutSetupStatus": "unknown",
       "payoutNote": "No connected evidence currently confirms Dub/Stripe payout setup. This does not block referral tracking, but payout readiness is not certified."
