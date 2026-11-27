@@ -72,7 +72,8 @@ for(const f of htmlFiles){
     affiliateCount++;
     let host="";
     try{host=new URL(href,BASE).hostname.replace(/^www\./,"");}catch{}
-    if(host!=="beehiiv.com") errors.push(`Unapproved affiliate host on ${p}: ${host||href}`);
+    const approvedAppSumo=href==="https://appsumo.8odi.net/m4MD3X";
+    if(host!=="beehiiv.com" && !approvedAppSumo) errors.push(`Unapproved affiliate link on ${p}: ${host||href}`);
     if(!/\brel=["'][^"']*\bsponsored\b/i.test(tag)) errors.push(`Affiliate link missing rel=sponsored: ${p} -> ${href}`);
     if(!/\bdata-affiliate=/i.test(tag)) errors.push(`Affiliate link missing data-affiliate tracking label: ${p} -> ${href}`);
   }
