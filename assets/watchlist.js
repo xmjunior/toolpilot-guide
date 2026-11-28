@@ -38,7 +38,13 @@
         });
         const result=await response.json();
         if(!response.ok||!result.ok) throw new Error("capture_failed");
-        if(status) status.textContent=isEs?"Ya estás en la lista. Solo enviaremos novedades de ToolPilot sobre ofertas y guías.":"You're on the watchlist. We'll send only ToolPilot deal and buying-guide updates.";
+        if(status) {
+          status.textContent=isEs?"Solicitud guardada. Para confirmar, envía un correo desde la misma dirección. ":"Request saved. To confirm, send an email from the same address. ";
+          const link=document.createElement("a");
+          link.href="mailto:toolpilotguide.global@gmail.com?subject="+encodeURIComponent("CONFIRM TOOLPILOT WATCHLIST")+"&body="+encodeURIComponent("I confirm that I want to receive ToolPilot deal and buying-guide updates. I can unsubscribe at any time.");
+          link.textContent=isEs?"Confirmar por correo":"Confirm by email";
+          status.appendChild(link);
+        }
         form.reset();
         fetch(eventEndpoint,{
           method:"POST",
