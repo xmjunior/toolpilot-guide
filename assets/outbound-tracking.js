@@ -14,7 +14,7 @@
       if(host==="bing.com" || host.endsWith(".bing.com")) return "bing";
       if(host==="duckduckgo.com" || host.endsWith(".duckduckgo.com")) return "duckduckgo";
       if(host==="reddit.com" || host.endsWith(".reddit.com")) return "reddit";
-      if(host==="youtube.com" || host.endsWith(".youtube.com")) return "youtube";
+      if(host==="youtube.com" || host.endsWith(".youtube.com") || host==="youtu.be") return "youtube";
       if(host==="instagram.com" || host.endsWith(".instagram.com")) return "instagram";
       if(host==="facebook.com" || host.endsWith(".facebook.com")) return "facebook";
       if(host==="toolpilot-guide.onrender.com") return "internal";
@@ -42,7 +42,27 @@
     fallback();
   }
 
-  function pageView(){ send("page_view",document.title.slice(0,250)); }
+  // Preserve only the coarse YouTube origin through relevant first-party links.
+  // No cookies, no new events, no changes to external affiliate links.
+  function youtubeInternalHref(href,current){
+    if(!href||href.startsWith('#'))return href;
+    let u,base;try{base=new URL(current);u=new URL(href,base);}catch(_){return href;}
+    if(u.origin!==base.origin||!/^https?:$/.test(u.protocol))return href;
+    if(!(/^\/(?:free-tools\.html|tools\/[a-z0-9-]+\.html|black-friday\/(?:verified-saas-deals-2026|saas-cost-calculator)\.html)$/.test(u.pathname)||u.pathname==='/'))return href;
+    if(u.searchParams.has('utm_source'))return href;
+    if(u.pathname===base.pathname&&u.search===base.search)return href;
+    u.searchParams.set('utm_source','youtube');
+    if(!u.searchParams.has('utm_medium'))u.searchParams.set('utm_medium','internal');
+    return u.pathname+u.search+u.hash;
+  }
+  function tagYouTubeLinks(){
+    if(source()!=="youtube")return;
+    document.querySelectorAll('a[href]:not([download]):not([data-affiliate]):not([rel~="sponsored"])').forEach(a=>{
+      const before=a.getAttribute("href"),after=youtubeInternalHref(before,location.href);
+      if(after!==before)a.setAttribute("href",after);
+    });
+  }
+  function pageView(){ tagYouTubeLinks(); send("page_view",document.title.slice(0,250)); }
   if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",pageView,{once:true});
   else pageView();
 
