@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Offline capture of the real document-workflow excerpt. No external requests.
-Requires existing Python Playwright, Chromium and FFmpeg. Does not install or publish.
+Requires existing Python Playwright, Chromium, FFmpeg and local eSpeak.
+Uses an explicitly synthetic offline English narration; does not install or publish.
 Run from repository root: python scripts/capture-document-workflow.py OUTPUT_DIRECTORY
 The annotated capture uses the original section and copy handler. It is not a live AI run.
 """
@@ -11,9 +12,15 @@ from playwright.sync_api import sync_playwright
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument("output", type=Path)
 parser.add_argument("--chromium", default=shutil.which("chromium") or shutil.which("chromium-browser"))
+parser.add_argument("--espeak", default=shutil.which("espeak") or shutil.which("espeak-ng"))
 args = parser.parse_args()
 if not args.chromium or not shutil.which("ffmpeg") or not shutil.which("ffprobe"):
     raise SystemExit("Existing Chromium, FFmpeg and FFprobe are required; no automatic installation.")
+if not args.espeak:
+    raise SystemExit("Existing local eSpeak is required for spoken CTA; no automatic installation.")
+out = args.output / "ToolPilot_AI_Document_Workflow_Demo.mp4"
+if out.exists():
+    raise SystemExit("Original MP4 already exists; refusing to overwrite it.")
 root = Path(__file__).resolve().parents[1]
 html = (root / "free-tools.html").read_text(encoding="utf-8")
 section = re.search(r'<section id="document-workflow"[\s\S]*?</section>', html)
@@ -66,7 +73,7 @@ with tempfile.TemporaryDirectory(prefix="toolpilot-capture-") as tmp:
         page.evaluate('document.querySelector("#pointer").style.display="none"')
         caption("3 · Verify against the source","10 Dec · $500 maximum","Do not invent a year or change the budget.");focus("dl > div:nth-child(1)");record(5,pos("dl",210))
         caption("4 · Keep unknowns unknown","Approval pending. Owner unknown.","Manually verified example, not a live AI result.");focus("dl > div:nth-child(4)");record(5,pos("dl > div:nth-child(3)",210))
-        caption("Get the free AI templates.","Open the ToolPilot channel link.","Free for everyone. Subscribe for more tutorials.");focus(".actions");record(5,pos(".actions",390))
+        caption("Get 20 free AI templates.","Open the ToolPilot channel link.","Free for everyone. Subscribe for more tutorials.");focus(".actions");record(5,pos(".actions",390))
         checks["no_browser_errors"]=not errors
         checks["frame_count"]=index==fps*duration
         checks["no_horizontal_overflow"]=page.evaluate("document.documentElement.scrollWidth<=innerWidth")
@@ -81,13 +88,44 @@ with tempfile.TemporaryDirectory(prefix="toolpilot-capture-") as tmp:
         samples.append(round((math.sin(2*math.pi*note*t)*.023*env+math.sin(2*math.pi*130.813*t)*.009)*fade*32767))
     with wave.open(str(work/"music.wav"),"wb") as w:
         w.setnchannels(1);w.setsampwidth(2);w.setframerate(sr);w.writeframes(samples.tobytes())
-    out=args.output/"ToolPilot_AI_Document_Workflow_Demo.mp4"
-    subprocess.run(["ffmpeg","-hide_banner","-loglevel","error","-y","-framerate",str(fps),"-i",str(work/"%04d.png"),"-i",str(work/"music.wav"),"-c:v","libx264","-preset","veryfast","-crf","22","-pix_fmt","yuv420p","-r","30","-c:a","aac","-b:a","96k","-movflags","+faststart","-shortest",str(out)],check=True)
+    # Time-aligned local synthetic English narration; no API, paid voice or external recording.
+    lines = [
+        (0, 3, "Stop vague AI summaries."),
+        (3, 5, "Ask for evidence and unknowns, not just a summary."),
+        (8, 3, "Copy the template."),
+        (11, 5, "Check the date and the five hundred dollar maximum."),
+        (16, 5, "Approval is pending. The owner is not specified."),
+        (21, 5, "Channel link: twenty free templates. Subscribe for more."),
+    ]
+    inputs = ["-i", str(work/"music.wav")]
+    filters = ["[0:a]volume=0.25[music]"]
+    labels = ["[music]"]
+    voice_durations = []
+    for i, (start, slot, line) in enumerate(lines, 1):
+        voice = work / f"voice-{i}.wav"
+        subprocess.run([args.espeak, "-v", "en-us", "-s", "175", "-w", str(voice), line], check=True)
+        with wave.open(str(voice), "rb") as w:
+            seconds = w.getnframes() / w.getframerate()
+        if seconds > slot:
+            raise SystemExit(f"Narration exceeds scene {i}: {seconds:.2f}s > {slot}s")
+        voice_durations.append(round(seconds, 3))
+        inputs += ["-i", str(voice)]
+        filters.append(f"[{i}:a]aresample=44100,adelay={start*1000}:all=1[v{i}]")
+        labels.append(f"[v{i}]")
+    filters.append("".join(labels)+f"amix=inputs={len(labels)}:duration=first:normalize=0,alimiter=limit=0.9[mix]")
+    mix = work / "mix.wav"
+    subprocess.run(["ffmpeg","-hide_banner","-loglevel","error","-y",*inputs,
+                    "-filter_complex",";".join(filters),"-map","[mix]","-c:a","pcm_s16le",str(mix)],check=True)
+    with wave.open(str(mix),"rb") as w:
+        checks["narration_mix_duration"] = abs(w.getnframes()/w.getframerate()-duration) < .05
+    if not checks["narration_mix_duration"]:
+        raise SystemExit("Narration mix duration differs from video.")
+    subprocess.run(["ffmpeg","-hide_banner","-loglevel","error","-n","-framerate",str(fps),"-i",str(work/"%04d.png"),"-i",str(mix),"-c:v","libx264","-preset","veryfast","-crf","22","-pix_fmt","yuv420p","-r","30","-c:a","aac","-b:a","96k","-movflags","+faststart","-shortest",str(out)],check=True)
     probe=json.loads(subprocess.check_output(["ffprobe","-v","error","-show_streams","-show_format","-of","json",str(out)]))
     video=next(s for s in probe["streams"] if s["codec_type"]=="video")
     audio=next(s for s in probe["streams"] if s["codec_type"]=="audio")
     checks["mp4_1080x1920_h264_aac"]=video["codec_name"]=="h264" and video["width"]==1080 and video["height"]==1920 and audio["codec_name"]=="aac"
-    evidence={"checks":checks,"duration":probe["format"]["duration"],"size":out.stat().st_size,"scope":"offline annotated real excerpt; manual fictional example; fallback selection tested; secure-origin clipboard not tested; no upload"}
+    evidence={"checks":checks,"duration":probe["format"]["duration"],"size":out.stat().st_size,"narration":"local synthetic English (eSpeak)","voice_durations":voice_durations,"scope":"offline annotated real excerpt; manual fictional example; fallback selection tested; secure-origin clipboard not tested; no upload"}
     (args.output/"capture-evidence.json").write_text(json.dumps(evidence,indent=2))
     if not all(checks.values()):
         raise SystemExit(str(evidence))
