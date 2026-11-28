@@ -2,8 +2,24 @@
 const fmt=n=>n.toLocaleString('en-US',{style:'currency',currency:'USD'});
 const val=id=>Math.max(0,Number(document.getElementById(id).value)||0);
 function calc(){const base=val('monthly'),seats=Math.max(1,Math.round(val('seats'))),addons=val('addons'),usage=val('usage'),setup=val('setup'),migration=val('migration'),admin=val('adminhours'),hourly=val('hourly'),discount=Math.min(100,val('annualdiscount'));const sub=base*seats*(1-discount/100);const recurring=sub+addons+usage+admin*hourly;const migrationCost=migration*hourly;const y1=recurring*12+setup+migrationCost;const renewal=recurring*12;const three=y1+renewal*2;document.getElementById('monthlytotal').textContent=fmt(sub+addons+usage);document.getElementById('year1').textContent=fmt(y1);document.getElementById('renewal').textContent=fmt(renewal);document.getElementById('threeyear').textContent=fmt(three);document.getElementById('perseat').textContent=fmt(three/seats);}
+// Preserve the coarse YouTube attribution on our own buying-guide links only.
+// Never modify an external partner URL or carry arbitrary query values.
+function tpYouTubeSource(search,referrer){
+  const tagged=new URLSearchParams(search).get('utm_source');
+  if(tagged!==null)return tagged.trim().toLowerCase()==='youtube';
+  try{const h=new URL(referrer).hostname.toLowerCase();return h==='youtube.com'||h.endsWith('.youtube.com')||h==='youtu.be';}catch(_){return false;}
+}
+function tpYouTubeDestination(href,origin){
+  const u=new URL(href,origin);
+  if(u.origin!==origin||u.pathname!=='/black-friday/verified-saas-deals-2026.html')return href;
+  u.searchParams.set('utm_source','youtube');
+  u.searchParams.set('utm_medium','internal');
+  return u.pathname+u.search+u.hash;
+}
+const tpFromYouTube=tpYouTubeSource(location.search,document.referrer);
+if(tpFromYouTube)document.querySelectorAll('#next-buying-step a[href]').forEach(a=>{a.setAttribute('href',tpYouTubeDestination(a.getAttribute('href'),location.origin));});
 let TP_TOOL_USE_SENT=false;
-function trackTool(){if(TP_TOOL_USE_SENT)return;TP_TOOL_USE_SENT=true;fetch('https://rjgpwcmfgdkmlplifwck.supabase.co/functions/v1/toolpilot-event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({event_name:'tool_use',target:'saas-total-cost-calculator',page_path:location.pathname,source:'site'}),keepalive:true}).catch(()=>{});}
+function trackTool(){if(TP_TOOL_USE_SENT)return;TP_TOOL_USE_SENT=true;fetch('https://rjgpwcmfgdkmlplifwck.supabase.co/functions/v1/toolpilot-event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({event_name:'tool_use',target:'saas-total-cost-calculator',page_path:location.pathname,source:tpFromYouTube?'youtube':'site'}),keepalive:true}).catch(()=>{});}
 ['monthly','seats','addons','usage','setup','migration','adminhours','hourly','annualdiscount'].forEach(id=>document.getElementById(id).addEventListener('input',()=>{calc();trackTool();}));calc();
 document.getElementById('copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(document.getElementById('embedcode').value);document.getElementById('copystatus').textContent='Copied.';}catch(_){document.getElementById('embedcode').select();document.getElementById('copystatus').textContent='Select and copy the code above.';}fetch('https://rjgpwcmfgdkmlplifwck.supabase.co/functions/v1/toolpilot-event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({event_name:'embed_copy',target:'saas-total-cost-calculator',page_path:location.pathname,source:'site'}),keepalive:true}).catch(()=>{});});
 
